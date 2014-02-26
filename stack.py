@@ -13,7 +13,7 @@ class Node:
 
 class Stack:
     """ a virtual stack of pancakes... err... items... that
-    constututes a First-In, Last-Out data structure """
+    constututes a Last-In-First-Out data structure """
     def __init__(self):
         self.pancake = None
 
