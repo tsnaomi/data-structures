@@ -7,6 +7,6 @@ A data structure consisting of a sequenece of nodes, in which each node is compo
 
 Queue
 --------------
-
+A First-In-First-Out (FIFO) data structure. See: http://www.princeton.edu/~achaney/tmve/wiki100k/docs/Queue_(data_structure).html.
 Stack
 --------------
