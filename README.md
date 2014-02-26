@@ -13,3 +13,5 @@ Special thanks to Justin L. (risingmoon) for helping me construct the queue usin
 Stack
 --------------
 A Last-In-First-Out (LIFO) data structure having to do with pancakes. See: http://en.wikipedia.org/wiki/Stack_(abstract_data_type).
+
+[![Travis](https://api.travis-ci.org/tsnaomi/data_structures)](https://api.travis-ci.org/tsnaomi/data_structures)
