@@ -22,7 +22,6 @@ class TestSinglyLinkedList(unittest.TestCase):
         for i in range(1, 5):
             self.foo.insert(i)
         self.assertEqual(self.foo.pop(), 4)
-        # self.foo.pop()
         self.assertEqual(self.foo.__str__(), self.list2)
 
     def test_size(self):
