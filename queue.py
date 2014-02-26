@@ -12,12 +12,12 @@ class Node:
 
 
 class Queue:
-    """ a First-In, First-Out data structure """
+    """ a First-In-First-Out data structure """
     def __init__(self):
         self.head = None
         self.tail = None
 
-    def enqueue(self, x):
+    def enqueue(self, x):  # Attribution: Justin L. (risingmoon)
         """ adds an item to the queue """
         if self.head:
             self.tail.next = Node(x)
