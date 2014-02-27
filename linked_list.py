@@ -39,9 +39,9 @@ class LinkedList:
 
     def pop(self):
         """ pops the first item off the head of the list and returns it """
-        x = self.head.value
+        x = self.head
         self.head = self.head.next
-        return x
+        return x.value
 
     def size(self):
         """ returns the number of items in the list """
