@@ -32,16 +32,18 @@ class LinkedList:
                 nodes += ", %s" % (node.value)
             node = node.next
         return "(%s)" % (nodes[2:])
-
+        
     def insert(self, x):
         """ inserts item at the head of the list """
         self.head = Node(x, self.head)
 
     def pop(self):
         """ pops the first item off the head of the list and returns it """
-        x = self.head
-        self.head = self.head.next
-        return x.value
+        node = self.head
+        while node:
+            self.head = self.head.next
+            return node.value
+        raise ValueError("LinkedList is empty")
 
     def size(self):
         """ returns the number of items in the list """
@@ -64,15 +66,17 @@ class LinkedList:
     def remove(self, x):
         """ removes a specified node from the list """
         node = self.head
-        if node.value == x:
-            self.head = node.next
-        else:
-            while node:
-                if node.value == x:
-                    previous.next = node.next
-                    return None
-                previous = node
-                node = node.next
+        while node:
+            if node.value == x:
+                self.head = node.next
+            else:
+                while node:
+                    if node.value == x:
+                        previous.next = node.next
+                        return None
+                    previous = node
+                    node = node.next
+        raise ValueError("LinkedList is empty")
 
     def PRINT(self):
         """ prints a tuple literal of the nodes in the list """
