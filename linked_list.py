@@ -17,12 +17,20 @@ class LinkedList:
         self.head = None
 
     def __str__(self):
-        node = self.head
-        nodes = []
-        while node:
-            nodes.append(node.value)
-            node = node.next
-        return str(tuple(nodes))
+        # node = self.head
+        # nodes = []
+        # while node:
+        #     nodes.append(node.value)
+        #     node = node.next
+        # return str(tuple(nodes))
+        nodes = ""  # a more purist solution
+        while self.head:
+            if isinstance(self.head.value, str):
+                nodes += ", \'%s\'" % (self.head.value)
+            else:
+                nodes += ", %s" % (self.head.value)
+            self.head = self.head.next
+        return "(%s)" % (nodes[2:])
 
     def insert(self, x):
         """ inserts item at the head of the list """
