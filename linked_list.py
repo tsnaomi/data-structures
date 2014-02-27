@@ -23,13 +23,14 @@ class LinkedList:
         #     nodes.append(node.value)
         #     node = node.next
         # return str(tuple(nodes))
-        nodes = ""  # a more purist solution
-        while self.head:
-            if isinstance(self.head.value, str):
-                nodes += ", \'%s\'" % (self.head.value)
+        node = self.head  # a more purist solution
+        nodes = ""
+        while node:
+            if isinstance(node.value, str):
+                nodes += ", \'%s\'" % (node.value)
             else:
-                nodes += ", %s" % (self.head.value)
-            self.head = self.head.next
+                nodes += ", %s" % (node.value)
+            node = node.next
         return "(%s)" % (nodes[2:])
 
     def insert(self, x):
