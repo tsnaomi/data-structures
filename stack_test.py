@@ -23,14 +23,14 @@ class TestStack(unittest.TestCase):
         self.breakfast.push("eggs")
         self.breakfast.push("sausage")
         self.breakfast.push("orange juice")
-        nodes = self.amass(self.breakfast.pancake)
+        nodes = self.amass(self.breakfast.node)
         self.assertEqual(nodes, self.meal1)
 
     def test_pop(self):
         for i in range(4):
             self.breakfast.push(i)
         returned = self.breakfast.pop()
-        nodes = self.amass(self.breakfast.pancake)
+        nodes = self.amass(self.breakfast.node)
         self.assertEqual(returned, 3)
         self.assertEqual(nodes, self.meal2)
 
