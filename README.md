@@ -15,4 +15,4 @@ Stack
 A Last-In-First-Out (LIFO) data structure having to do with pancakes. See: http://en.wikipedia.org/wiki/Stack_(abstract_data_type).
 
 
-[![Build Status](https://travis-ci.org/tsnaomi/data_structures.png?branch=master)](https://travis-ci.org/tsnaomi/data_structures)
+[![Build Status](https://travis-ci.org/tsnaomi/data-structures.png?branch=master)](https://travis-ci.org/tsnaomi/data-structures)
