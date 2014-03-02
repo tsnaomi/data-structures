@@ -14,7 +14,11 @@ class Node:
 class LinkedList:
     """ a singly-linked list in Python """
     def __init__(self):
-        self.head = None
+        # self.head = None
+        if isinstance(self.value, str):
+            return "\'%s\'" % (self.value)
+        else:
+            return "%s" % (self.value)
 
     def __str__(self):
         # node = self.head
@@ -23,6 +27,14 @@ class LinkedList:
         #     nodes.append(node.value)
         #     node = node.next
         # return str(tuple(nodes))
+
+        # node = self.head
+        # nodes = []
+        # while node:
+        #     nodes.append(str(node))
+        #     node = node.next
+        # return '(' + ', '.join(nodes) + ')'
+
         node = self.head  # a more purist solution
         nodes = ""
         while node:
@@ -32,7 +44,7 @@ class LinkedList:
                 nodes += ", %s" % (node.value)
             node = node.next
         return "(%s)" % (nodes[2:])
-        
+
     def insert(self, x):
         """ inserts item at the head of the list """
         self.head = Node(x, self.head)
@@ -40,7 +52,7 @@ class LinkedList:
     def pop(self):
         """ pops the first item off the head of the list and returns it """
         node = self.head
-        while node:
+        if node:
             self.head = self.head.next
             return node.value
         raise ValueError("LinkedList is empty")
@@ -66,7 +78,7 @@ class LinkedList:
     def remove(self, x):
         """ removes a specified node from the list """
         node = self.head
-        while node:
+        if node:
             if node.value == x:
                 self.head = node.next
             else:

@@ -1,6 +1,6 @@
 #!/usr/bin/env Python
 
-from queue import Queue
+from data_structures.queue import Queue
 import unittest
 
 
