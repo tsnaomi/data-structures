@@ -8,17 +8,17 @@ class Node:
         self.next = node
 
     def __str__(self):
-        return str(self.value)
+        # return str(self.value)
+        if isinstance(self.value, str):
+            return "\'%s\'" % (self.value)
+        else:
+            return "%s" % (self.value)
 
 
 class LinkedList:
     """ a singly-linked list in Python """
     def __init__(self):
-        # self.head = None
-        if isinstance(self.value, str):
-            return "\'%s\'" % (self.value)
-        else:
-            return "%s" % (self.value)
+        self.head = None
 
     def __str__(self):
         # node = self.head
@@ -28,22 +28,22 @@ class LinkedList:
         #     node = node.next
         # return str(tuple(nodes))
 
-        # node = self.head
-        # nodes = []
-        # while node:
-        #     nodes.append(str(node))
-        #     node = node.next
-        # return '(' + ', '.join(nodes) + ')'
-
-        node = self.head  # a more purist solution
-        nodes = ""
+        node = self.head
+        nodes = []
         while node:
-            if isinstance(node.value, str):
-                nodes += ", \'%s\'" % (node.value)
-            else:
-                nodes += ", %s" % (node.value)
+            nodes.append(str(node))
             node = node.next
-        return "(%s)" % (nodes[2:])
+        return '(' + ', '.join(nodes) + ')'
+
+        # node = self.head  # a more purist solution
+        # nodes = ""
+        # while node:
+        #     if isinstance(node.value, str):
+        #         nodes += ", \'%s\'" % (node.value)
+        #     else:
+        #         nodes += ", %s" % (node.value)
+        #     node = node.next
+        # return "(%s)" % (nodes[2:])
 
     def insert(self, x):
         """ inserts item at the head of the list """
