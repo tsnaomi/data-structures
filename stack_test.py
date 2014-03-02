@@ -8,7 +8,7 @@ class TestStack(unittest.TestCase):
     """ """
     def setUp(self):
         self.breakfast = Stack()
-        self.meal1 = ["orange juice", "sausage", "eggs", "PANCAKES"]
+        self.meal1 = ["pineapple juice", "sausage", "eggs", "PANCAKES"]
         self.meal2 = [2, 1, 0]
 
     def amass(self, node):
@@ -22,7 +22,7 @@ class TestStack(unittest.TestCase):
         self.breakfast.push("PANCAKES")
         self.breakfast.push("eggs")
         self.breakfast.push("sausage")
-        self.breakfast.push("orange juice")
+        self.breakfast.push("pineapple juice")
         nodes = self.amass(self.breakfast.node)
         self.assertEqual(nodes, self.meal1)
 
