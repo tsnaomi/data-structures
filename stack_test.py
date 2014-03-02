@@ -1,6 +1,6 @@
 #!/usr/bin/enr Python
 
-from data_structures.stack import Stack
+from stack import Stack
 import unittest
 
 
