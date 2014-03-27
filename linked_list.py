@@ -1,49 +1,32 @@
 #!/usr/bin/env Python
 
 
-class Node:
+class Node(object):
     """ a node in a singly-linked list in Python """
     def __init__(self, value=None, node=None):
         self.value = value
         self.next = node
 
     def __str__(self):
-        # return str(self.value)
         if isinstance(self.value, str):
             return "\'%s\'" % (self.value)
         else:
-            return "%s" % (self.value)
+            return str(self.value)  # return '%s' % self.value
 
 
-class LinkedList:
+class LinkedList(object):
     """ a singly-linked list in Python """
     def __init__(self):
         self.head = None
 
     def __str__(self):
-        # node = self.head
-        # nodes = []
-        # while node:
-        #     nodes.append(node.value)
-        #     node = node.next
-        # return str(tuple(nodes))
-
         node = self.head
         nodes = []
         while node:
             nodes.append(str(node))
             node = node.next
-        return '(' + ', '.join(nodes) + ')'
+        return '(%s)' % ', '.join(nodes)  # return str(tuple(nodes))
 
-        # node = self.head  # a more purist solution
-        # nodes = ""
-        # while node:
-        #     if isinstance(node.value, str):
-        #         nodes += ", \'%s\'" % (node.value)
-        #     else:
-        #         nodes += ", %s" % (node.value)
-        #     node = node.next
-        # return "(%s)" % (nodes[2:])
 
     def insert(self, x):
         """ inserts item at the head of the list """
