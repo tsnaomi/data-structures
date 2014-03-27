@@ -14,5 +14,9 @@ Stack
 --------------
 A Last-In-First-Out (LIFO) data structure having to do with pancakes. See: http://en.wikipedia.org/wiki/Stack_(abstract_data_type).
 
+Hash Table
+--------------
+A data structure that maps keys to values by way of hashing. See: http://en.wikipedia.org/wiki/Hash_table.
 
-[![Build Status](https://travis-ci.org/tsnaomi/data-structures.png?branch=master)](https://travis-ci.org/tsnaomi/data-structures)
+
+[![Build Status](https://travis-ci.org/tsnaomi/data_structures.png?branch=master)](https://travis-ci.org/tsnaomi/data_structures)
