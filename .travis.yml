@@ -4,7 +4,7 @@ python:
 # command to install dependencies
 install: 
     - pip install -r requirements.txt
-    - sudo mv nltk_data /usr/share/nltk_data
+    - sudo mv /usr/share/nltk_data nltk_data
 # command to run tests
 script: 
     - python linked_list_test.py
