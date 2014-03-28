@@ -2,6 +2,8 @@
 
 from random import randint
 
+# inspiration: github.com/markcharyk
+
 
 class Tree(object):
     ''' A binary search tree data structure '''
