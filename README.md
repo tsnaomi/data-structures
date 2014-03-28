@@ -20,7 +20,7 @@ A data structure that maps keys to values by way of hashing. See: http://en.wiki
 
 Binary Search Tree
 --------------
-*CS hazing*. See: http://en.wikipedia.org/wiki/Binary_search_tree.
+*The data structure form of hazing*. See: http://en.wikipedia.org/wiki/Binary_search_tree.
 
 
 [![Build Status](https://travis-ci.org/tsnaomi/data_structures.png?branch=master)](https://travis-ci.org/tsnaomi/data_structures)
