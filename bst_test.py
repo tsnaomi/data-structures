@@ -58,17 +58,17 @@ class TestTree(unittest.TestCase):
             self.tree.contains('blossoms')
 
     def test_size(self):
-        # size of non-empty tree
+        # size of a non-empty tree
         self.assertEqual(self.tree.size(), 1)
         for x in self.list:
             self.tree.insert(x)
             self.assertTrue(self.tree.size(), self.list.index(x)+2)
 
-        # size of empty tree
+        # size of an empty tree
         self.assertEqual(self.TREE.size(), 0)
 
     def test_depth(self):
-        # depth of non-empty tree
+        # depth of a non-empty tree
         for x in self.list[:5]:
             self.tree.insert(x)
         self.assertEqual(self.tree.depth(), 4)
@@ -79,11 +79,11 @@ class TestTree(unittest.TestCase):
             self.tree.insert(x)
         self.assertEqual(self.tree.depth(), 9)
 
-        # depth of empty tree
+        # depth of an empty tree
         self.assertEqual(self.TREE.depth(), 0)
 
     def test_balance(self):
-        # balance of non-empty tree
+        # balance of a non-empty tree
         for x in self.list[:14]:
             self.tree.insert(x)
         self.assertEqual(self.tree.balance(), 7)
@@ -94,7 +94,7 @@ class TestTree(unittest.TestCase):
         self.tree.insert(2)
         self.assertEqual(self.tree.balance(), 8)
 
-        # balance of empty tree
+        # balance of an empty tree
         self.assertEqual(self.TREE.balance(), 0)
 
 if __name__ == '__main__':
