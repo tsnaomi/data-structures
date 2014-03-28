@@ -42,6 +42,7 @@ class TestTree(unittest.TestCase):
 
         # insert into an empty tree
         self.TREE.insert(4)
+        self.assertEqual(self.TREE.value, 4)
 
         # insert a forbidden value
         with self.assertRaises(TypeError):
