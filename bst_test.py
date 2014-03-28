@@ -25,7 +25,7 @@ class TestTree(unittest.TestCase):
 
         # init with a forbidden value
         with self.assertRaises(TypeError):
-            TREE = Tree("leaves")
+            TREE = Tree('leaves')
 
     def test_insert(self):
         # insert into a non-empty tree
@@ -40,7 +40,7 @@ class TestTree(unittest.TestCase):
 
         # insert a forbidden value
         with self.assertRaises(TypeError):
-            self.tree.insert("branches")
+            self.tree.insert('branches')
 
     def test_contains(self):
         # test contains() with a non-empty tree
@@ -55,7 +55,7 @@ class TestTree(unittest.TestCase):
 
         # test contains() with a forbidden value
         with self.assertRaises(TypeError):
-            self.tree.contains("blossoms")
+            self.tree.contains('blossoms')
 
     def test_size(self):
         # size of non-empty tree
