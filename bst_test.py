@@ -34,9 +34,14 @@ class TestTree(unittest.TestCase):
         self.assertEqual(self.tree.left.value, 3)
         self.assertEqual(self.tree.right.value, 12)
 
+        # inssert an existing value into a tree
+        self.tree.insert(4)
+
         # insert into an empty tree
         self.TREE.insert(4)
-        self.assertEqual(self.TREE.value, 4)
+        self.assertEqual(self.tree.value, 4)  # structure hasn't changed
+        self.assertEqual(self.tree.left.value, 3)  # structure hasn't changed
+        self.assertEqual(self.tree.right.value, 12)  # structure hasn't changed
 
         # insert a forbidden value
         with self.assertRaises(TypeError):
@@ -83,7 +88,7 @@ class TestTree(unittest.TestCase):
         self.assertEqual(self.TREE.depth(), 0)
 
     def test_balance(self):
-        # balance of a non-empty tree
+        # balance of a non-empty tree (right-heavy)
         for x in self.list[:14]:
             self.tree.insert(x)
         self.assertEqual(self.tree.balance(), 7)
@@ -93,6 +98,12 @@ class TestTree(unittest.TestCase):
         self.assertEqual(self.tree.balance(), 9)
         self.tree.insert(2)
         self.assertEqual(self.tree.balance(), 8)
+
+        # balance of a non-empty tree (left-heavy)
+        TREE = Tree(4)
+        for x in [1, 2, 3, 5]:
+            TREE.insert(x)
+        self.assertEqual(TREE.balance(), -2)
 
         # balance of an empty tree
         self.assertEqual(self.TREE.balance(), 0)
