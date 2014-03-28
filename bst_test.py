@@ -36,12 +36,12 @@ class TestTree(unittest.TestCase):
 
         # inssert an existing value into a tree
         self.tree.insert(4)
-
-        # insert into an empty tree
-        self.TREE.insert(4)
         self.assertEqual(self.tree.value, 4)  # structure hasn't changed
         self.assertEqual(self.tree.left.value, 3)  # structure hasn't changed
         self.assertEqual(self.tree.right.value, 12)  # structure hasn't changed
+
+        # insert into an empty tree
+        self.TREE.insert(4)
 
         # insert a forbidden value
         with self.assertRaises(TypeError):
