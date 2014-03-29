@@ -64,7 +64,7 @@ class Tree(object):
         #     else self.right.depth() - self.left.depth()
 
     def in_order(self):
-        ''' traverses the values in the tree one at a time in order '''
+        ''' Traverses the values in the tree one at a time in order '''
         if self.left is not None:
             for value in self.left.in_order():
                 yield value
@@ -75,7 +75,7 @@ class Tree(object):
                 yield value
 
     def pre_order(self):
-        ''' traverses the values in the tree one at a time, yielding parents
+        ''' Traverses the values in the tree one at a time, yielding parents
             first '''
         if self.value is not None:
             yield self.value
@@ -87,7 +87,7 @@ class Tree(object):
                 yield value
 
     def post_order(self):
-        ''' traverses the values in the tree one at a time, yielding children
+        ''' Traverses the values in the tree one at a time, yielding children
             first '''
         if self.left is not None:
             for value in self.left.post_order():
@@ -99,7 +99,7 @@ class Tree(object):
             yield self.value
 
     def breadth_first(self):  # collaborator: github.com/risingmoon
-        ''' traverses the values in the tree beginning with the root and going
+        ''' Traverses the values in the tree beginning with the root and going
             down level by level, yielding values left to right '''
         pqueue = [] if self.value is None else [self]  # pqueue is pseudo-queue
         while pqueue:
