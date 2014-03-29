@@ -41,21 +41,74 @@ class Tree(object):
         if self.value is None:
             return 0
         return 1 + self.left.size() + self.right.size()
+        # return 0 if self.value is None \
+        #     else 1 + self.left.size() + self.right.size()
 
     def depth(self):
         ''' Returns the number of levels the tree contains. '''
         if self.value is None:
             return 0
         return 1 + max(self.left.depth(), self.right.depth())
+        # return 0 if self.value is None \
+        #     else 1 + max(self.left.depth(), self.right.depth())
 
     def balance(self):
         ''' Returns an integer representing the balance of the tree.
             A negative number indicates a left-heavy tree.
-            A positive number indicates a right-heavy tree.
+            A positive number indicates a righ-heavy tree.
             0 indicates a lovely, perfectly balanced tree. '''
         if self.value is None:
             return 0
         return self.right.depth() - self.left.depth()
+        # return 0 if self.value is None \
+        #     else self.right.depth() - self.left.depth()
+
+    def in_order(self):
+        ''' traverses the values in the tree one at a time in order '''
+        if self.left is not None:
+            for value in self.left.in_order():
+                yield value
+        if self.value is not None:
+            yield self.value
+        if self.right is not None:
+            for value in self.right.in_order():
+                yield value
+
+    def pre_order(self):
+        ''' traverses the values in the tree one at a time, yielding parents
+            first '''
+        if self.value is not None:
+            yield self.value
+        if self.left is not None:
+            for value in self.left.pre_order():
+                yield value
+        if self.right is not None:
+            for value in self.right.pre_order():
+                yield value
+
+    def post_order(self):
+        ''' traverses the values in the tree one at a time, yielding children
+            first '''
+        if self.left is not None:
+            for value in self.left.post_order():
+                yield value
+        if self.right is not None:
+            for value in self.right.post_order():
+                yield value
+        if self.value is not None:
+            yield self.value
+
+    def breadth_first(self):  # collaborator: github.com/risingmoon
+        ''' traverses the values in the tree beginning with the root and going
+            down level by level, yielding values left to right '''
+        pqueue = [] if self.value is None else [self]  # pqueue is pseudo-queue
+        while pqueue:
+            node = pqueue.pop(0)
+            if node.left and node.left.value is not None:
+                pqueue.append(node.left)
+            if node.right and node.right.value is not None:
+                pqueue.append(node.right)
+            yield node.value
 
     def get_dot(self):
         ''' Returns the tree with the root 'self' as a dot graph for

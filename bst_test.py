@@ -10,7 +10,7 @@ class TestTree(unittest.TestCase):
     def setUp(self):
         self.tree = Tree(4)
         self.TREE = Tree()
-        self.list = [3, 12, 8, 27, 13, 28, 31, 24, 30, 33, 40, 50, 34, 35]
+        self.list = [3, 12, 8, 27, 13, 28, 31, 29, 30, 33, 40, 50, 34, 35]
 
     def test_init(self):
         # init with a non-empty tree
@@ -80,7 +80,7 @@ class TestTree(unittest.TestCase):
         self.assertEqual(self.tree.depth(), 4)
         for x in self.list[5:10]:
             self.tree.insert(x)
-        self.assertEqual(self.tree.depth(), 6)
+        self.assertEqual(self.tree.depth(), 7)
         for x in self.list[10:]:
             self.tree.insert(x)
         self.assertEqual(self.tree.depth(), 9)
@@ -108,6 +108,70 @@ class TestTree(unittest.TestCase):
 
         # balance of an empty tree
         self.assertEqual(self.TREE.balance(), 0)
+
+    def test_inOrder(self):
+        # in-order traversal of a non-empty tree
+        expected = [3, 4, 8, 12, 13, 27, 28, 29, 30, 31, 33, 34, 35, 40, 50]
+        test = []
+        for x in self.list:
+            self.tree.insert(x)
+        for i in self.tree.in_order():
+            test.append(i)
+        self.assertEqual(test, expected)
+
+        # in-order traversal of an empty tree
+        test = []
+        for i in self.TREE.in_order():
+            test.append(i)
+        self.assertEqual(test, [])
+
+    def test_preOrder(self):
+        # pre-order traversal of a non empty tree
+        expected = [4, 3, 12, 8, 27, 13, 28, 31, 29, 30, 33, 40, 34, 35, 50]
+        test = []
+        for x in self.list:
+            self.tree.insert(x)
+        for i in self.tree.pre_order():
+            test.append(i)
+        self.assertEqual(test, expected)
+
+        # pre-order traversal of an empty tree
+        test = []
+        for i in self.TREE.pre_order():
+            test.append(i)
+        self.assertEqual(test, [])
+
+    def test_postOrder(self):
+        # post-order traversal of a non empty tree
+        expected = [3, 8, 13, 30, 29, 35, 34, 50, 40, 33, 31, 28, 27, 12, 4]
+        test = []
+        for x in self.list:
+            self.tree.insert(x)
+        for i in self.tree.post_order():
+            test.append(i)
+        self.assertEqual(test, expected)
+
+        # post-order traversal of an empty tree
+        test = []
+        for i in self.TREE.post_order():
+            test.append(i)
+        self.assertEqual(test, [])
+
+    def test_breadthFirst(self):
+        # breadth-first traversal of a non-empty tree
+        expected = [4, 3, 12, 8, 27, 13, 28, 31, 29, 33, 30, 40, 34, 50, 35]
+        test = []
+        for x in self.list:
+            self.tree.insert(x)
+        for i in self.tree.breadth_first():
+            test.append(i)
+        self.assertEqual(test, expected)
+
+        # breadth-first traversal of an empty tree
+        test = []
+        for i in self.TREE.breadth_first():
+            test.append(i)
+        self.assertEqual(test, [])
 
 if __name__ == '__main__':
     unittest.main()
