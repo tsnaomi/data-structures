@@ -6,7 +6,7 @@ from random import randint
 
 
 class Tree(object):
-    ''' A binary search tree data structure '''
+    ''' A binary search tree data structure. '''
     def __init__(self, value=None):
         if isinstance(value, (int, float)) or value is None:
             self.value = value
@@ -64,7 +64,7 @@ class Tree(object):
         #     else self.right.depth() - self.left.depth()
 
     def in_order(self):
-        ''' Traverses the values in the tree one at a time in order '''
+        ''' Traverses the values in the tree one at a time in order. '''
         if self.left is not None:
             for value in self.left.in_order():
                 yield value
@@ -76,7 +76,7 @@ class Tree(object):
 
     def pre_order(self):
         ''' Traverses the values in the tree one at a time, yielding parents
-            first '''
+            first. '''
         if self.value is not None:
             yield self.value
         if self.left is not None:
@@ -88,7 +88,7 @@ class Tree(object):
 
     def post_order(self):
         ''' Traverses the values in the tree one at a time, yielding children
-            first '''
+            first. '''
         if self.left is not None:
             for value in self.left.post_order():
                 yield value
@@ -100,7 +100,7 @@ class Tree(object):
 
     def breadth_first(self):  # collaborator: github.com/risingmoon
         ''' Traverses the values in the tree beginning with the root and going
-            down level by level, yielding values left to right '''
+            down level by level, yielding values left to right. '''
         pqueue = [] if self.value is None else [self]  # pqueue is pseudo-queue
         while pqueue:
             node = pqueue.pop(0)
