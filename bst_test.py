@@ -173,5 +173,56 @@ class TestTree(unittest.TestCase):
             test.append(i)
         self.assertEqual(test, [])
 
+    def test_delete(self):
+        for x in self.list:
+            self.tree.insert(x)
+
+        # deleting a node with no descendants from a non-empty tree
+        expected = [4, 3, 12, 8, 27, 13, 28, 31, 29, 33, 30, 40, 34, 50]
+        test = []
+        self.tree.delete(35)
+        for i in self.tree.breadth_first():
+            test.append(i)
+        self.assertEqual(test, expected)
+
+        # deleting a node with one descendant from a non-empty tree
+        expected = [4, 3, 12, 8, 27, 13, 28, 31, 29, 40, 30, 34, 50]
+        test = []
+        self.tree.delete(33)
+        for i in self.tree.breadth_first():
+            test.append(i)
+        self.assertEqual(test, expected)
+
+        # deleting a node with two descendants from a non-empty tree
+        expected = [4, 3, 12, 8, 27, 13, 28, 30, 29, 40, 34, 50]
+        test = []
+        self.tree.delete(31)
+        for i in self.tree.breadth_first():
+            test.append(i)
+        self.assertEqual(test, expected)
+
+        # deleting the root of a non-empty tree
+        expected = [8, 3, 12, 27, 13, 28, 30, 29, 40, 34, 50]
+        test = []
+        self.tree.delete(4)
+        for i in self.tree.breadth_first():
+            test.append(i)
+        self.assertEqual(test, expected)
+
+        # deleting a nonexistent node from a non-empty tree
+        expected = [8, 3, 12, 27, 13, 28, 30, 29, 40, 34, 50]
+        test = []
+        self.tree.delete(9)
+        for i in self.tree.breadth_first():
+            test.append(i)
+        self.assertEqual(test, expected)
+
+        # deleting a nonexistent node from an empty tree
+        expected, test = [], []
+        self.TREE.delete(29)
+        for i in self.TREE.breadth_first():
+            test.append(i)
+        self.assertEqual(test, expected)
+
 if __name__ == '__main__':
     unittest.main()

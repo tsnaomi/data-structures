@@ -110,6 +110,50 @@ class Tree(object):
                 pqueue.append(node.right)
             yield node.value
 
+    def delete(self, x):
+        ''' Deletes the specified value (x) from the tree if present. '''
+        if isinstance(x, (int, float)) and self.contains(x):
+            node, prev = self, self
+            while node.value != x:
+                prev = node
+                node = node.left if node.value > x else node.right
+            DELETE = node
+            if node.left.value is None and node.right.value is None:
+                if prev.left and prev.left.value == DELETE.value:
+                    prev.left = Tree()
+                else:
+                    prev.right = Tree()
+            else:
+                if node.balance() <= 0:
+                    if node.left.value is not None:
+                        self._delete(prev, node, DELETE, "left", "right")
+                    else:
+                        prev.right = DELETE.right
+                else:
+                    if node.right.value is not None:
+                        self._delete(prev, node, DELETE, "right", "left")
+                    else:
+                        prev.left = DELETE.left
+
+    def _delete(self, prev, node, DELETE, l1, l2):
+        ''' Helps delete() delete things. '''
+        node = getattr(node, l1)
+        if getattr(node, l2).value is not None:
+            if prev != DELETE and node.balance() == 0:
+                if prev.left.value == DELETE.value:
+                    prev.left = node
+                elif prev.right.value == DELETE.value:
+                    prev.right = node
+            else:
+                while getattr(node, l2).value is not None:
+                    prev = node
+                    node = getattr(node, l2)
+                DELETE.value = node.value
+                setattr(prev, l2, Tree() if getattr(node, l1).value is None
+                        else getattr(node, l1))
+        else:
+            DELETE.value, DELETE.right = node.value, node.right
+
     def get_dot(self):
         ''' Returns the tree with the root 'self' as a dot graph for
             visualization. '''
