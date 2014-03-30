@@ -2,21 +2,21 @@ Data Structures
 ==============
 Singly-linked List
 --------------
-A data structure consisting of a sequenece of nodes, where each node is composed of a value and a reference to the next node in the sequence. See [wikipedia.org/Linked_list](http://en.wikipedia.org/wiki/Linked_list).
+A data structure consisting of a sequenece of nodes, where each node is composed of a value and a reference to the next node in the sequence. See Wikipedia's article on [linked lists](http://en.wikipedia.org/wiki/Linked_list).
 
 Queue
 --------------
-A First-In-First-Out (FIFO) data structure. See this [Princeton page on queues](http://www.princeton.edu/~achaney/tmve/wiki100k/docs/Queue_(data_structure).html).
+A First-In-First-Out (FIFO) data structure. See this Princeton page on [queues](http://www.princeton.edu/~achaney/tmve/wiki100k/docs/Queue_(data_structure).html).
 
 Special thanks to Justin L. (risingmoon) for helping me construct the queue using a singly-linked list. 
 
 Stack
 --------------
-A Last-In-First-Out (LIFO) data structure having to do with pancakes. See [wikipedia.org/Stack](http://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
+A Last-In-First-Out (LIFO) data structure having to do with pancakes. See Wikipedia's article on [stacks](http://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
 
 Hash Table
 --------------
-A data structure that maps keys to values by way of hashing. See [wikipedia.org/Hash_table](http://en.wikipedia.org/wiki/Hash_table).
+A data structure that maps keys to values by way of hashing. See Wikipedia's article on [hash tables](http://en.wikipedia.org/wiki/Hash_table).
 
 Binary Search Tree
 --------------
