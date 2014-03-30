@@ -20,7 +20,7 @@ A data structure that maps keys to values by way of hashing. See: http://en.wiki
 
 Binary Search Tree
 --------------
-### *The data structure form of hazing*.
+#### *The data structure form of hazing*.
 See: http://en.wikipedia.org/wiki/Binary_search_tree.
 
 
