@@ -6,13 +6,13 @@ A data structure consisting of a sequenece of nodes, where each node is composed
 
 Queue
 --------------
-A First-In-First-Out (FIFO) data structure. See [this Princeton page on queues](http://www.princeton.edu/~achaney/tmve/wiki100k/docs/Queue_(data_structure).html).
+A First-In-First-Out (FIFO) data structure. See this [Princeton page on queues](http://www.princeton.edu/~achaney/tmve/wiki100k/docs/Queue_(data_structure).html).
 
 Special thanks to Justin L. (risingmoon) for helping me construct the queue using a singly-linked list. 
 
 Stack
 --------------
-A Last-In-First-Out (LIFO) data structure having to do with pancakes. See [wikipedia.org/Stack_(abstract_data_type)](http://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
+A Last-In-First-Out (LIFO) data structure having to do with pancakes. See [wikipedia.org/Stack](http://en.wikipedia.org/wiki/Stack_(abstract_data_type)).
 
 Hash Table
 --------------
