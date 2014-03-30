@@ -22,6 +22,7 @@ Binary Search Tree
 --------------
 #### *The data structure form of hazing*.
 ![image that encapsulates my feelings](http://25.media.tumblr.com/tumblr_m26nvnNG5o1qkk10ro1_500.jpg)
+
 See: http://en.wikipedia.org/wiki/Binary_search_tree.
 
 
