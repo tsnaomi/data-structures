@@ -14,11 +14,11 @@ Stack
 --------------
 A Last-In-First-Out (LIFO) data structure having to do with pancakes. See: http://en.wikipedia.org/wiki/Stack_(abstract_data_type).
 
-Hash Table
+Hash table
 --------------
 A data structure that maps keys to values by way of hashing. See: http://en.wikipedia.org/wiki/Hash_table.
 
-Binary Search Tree
+Binary search tree
 --------------
 #### *The data structure form of hazing*.
 See: http://en.wikipedia.org/wiki/Binary_search_tree.
