@@ -119,7 +119,7 @@ class Tree(object):
                 node = node.left if node.value > x else node.right
             DELETE = node
             if node.left.value is None and node.right.value is None:
-                if prev.left and prev.left.value == DELETE.value:
+                if prev.left.value == DELETE.value:
                     prev.left = Tree()
                 else:
                     prev.right = Tree()
