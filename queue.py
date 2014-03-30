@@ -1,5 +1,8 @@
 # !/usr/bin/env Python
 
+# inspiration: Special thanks to Justin Lee (github.com/risingmoon) for helping
+#              me construct the queue using a singly-linked list.
+
 
 class Node:
     """ a node in queue """
