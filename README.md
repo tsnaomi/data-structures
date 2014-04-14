@@ -23,5 +23,13 @@ Binary Search Tree
 
 See [here](http://en.wikipedia.org/wiki/Binary_search_tree) for a more diplomatic description.
 
+Insertion Sort
+--------------
+pass
+
+Merge Sort
+--------------
+pass
+
 
 [![Build Status](https://travis-ci.org/tsnaomi/data_structures.png?branch=master)](https://travis-ci.org/tsnaomi/data_structures)

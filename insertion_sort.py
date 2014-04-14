@@ -13,14 +13,15 @@ def insert_sort(ul):
     return ul
 
 if __name__ == '__main__':
-
+    print "Calculating..."
     from timeit import timeit
-    best, worst = [i for i in range(1000)], [i for i in range(1000)[::-1]]
 
-    best = timeit('insert_sort(best)',
-                  setup='from __main__ import insert_sort, best', number=1)
-    worst = timeit('insert_sort(worst)',
-                   setup='from __main__ import insert_sort, worst', number=1)
+    best = timeit('insert_sort([i for i in range(1, 1001)])',
+                  setup='from __main__ import insert_sort', number=100)
+    worst = timeit('insert_sort([i for i in range(1, 1001)[::-1]])',
+                   setup='from __main__ import insert_sort', number=100)
+
+    best, worst = best / 100, worst / 100
 
     print '''
         \n\tIt takes this insert_sort() method approximately \033[1m%s\033[0m
@@ -30,4 +31,4 @@ if __name__ == '__main__':
         it to sort a \033[1mreverse\033[0m list of the same set of numbers --
         the worst case input for such an algorithm.
         \n\t'Twas about \033[1m%s\033[0m%% faster with the pre-sorted list.
-        ''' % (best, worst, round((worst / best) * 100, 2))
+        ''' % (best, worst, round(((worst - best) / worst) * 100, 2))
