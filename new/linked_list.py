@@ -1,22 +1,5 @@
 # coding=utf-8
 
-# DOUBLY-LINKED LIST
-#   - insert(val) will insert the value 'val' at the head of the list
-#   - append(val) will append the value 'val' at the tail of the list
-#   - pop() will pop the first value off the head of the list and return it
-#   - shift() will remove the last value from the tail of the list and return
-#     it
-#   - remove(val) will remove the first instance of 'val' found in the list,
-#     starting from the head. If 'val' is not present, it will raise an
-#     appropriate Python exception.
-#   - size() will return the length of the list
-#   - search(val) will return the node containing 'val' in the list, if
-#     present, else None --- CONTAINS
-#   - print() will print the list represented as a Python tuple literal:
-#     "(12, 'sam', 37, 'tango')"
-#     bonus if you can make it so that the list appears this way on its own
-#     (remember special methods).
-
 
 class Node:
 
@@ -29,28 +12,17 @@ class Node:
         return str(self.val)
 
 
+# doubly-linked list
 class LinkedList:
 
     def __init__(self):
         self.List = None
 
     def __repr__(self):
-        #
-        nodes = ''
-        node = self.List
+        return str(self.tup())
 
-        while node:
-            nodes += str(node.val) + ', '
-            node = node.post
-
-        try:
-            return '[' + nodes[:-2] + ']'
-
-        except IndexError:
-            return '[]'
-
-    def _print(self):
-        #
+    def tup(self):
+        '''Return the linked list as a tuple literal.'''
         nodes = tuple()
         node = self.List
 
@@ -61,7 +33,7 @@ class LinkedList:
         return nodes
 
     def insert(self, val):
-        #
+        '''Insert 'val' at the head of the list.'''
         try:
             head = Node(val)
             self.List.prev = head
@@ -71,25 +43,25 @@ class LinkedList:
         except AttributeError:
             self.List = Node(val)
 
-    def append(self, val):  # simplify
-        #
-        def _append(val, node=self.List):
-            if node:
-                if node.post:
-                    _append(val, node.post)
+    def append(self, val):
+        '''Append 'val' at the end of the list.'''
+        node = self.List
 
-                else:
-                    tail = Node(val)
-                    tail.prev = node
-                    node.post = tail
+        while node:
+            if node.post:
+                node = node.post
 
             else:
-                self.List = Node(val)
+                tail = Node(val)
+                tail.prev = node
+                node.post = tail
+                break
 
-        _append(val)
+        else:
+            self.List = Node(val)
 
     def pop(self):
-        #
+        '''Pop off and return the value at the head of the list.'''
         try:
             val = self.List.val
             self.List = self.List.post
@@ -99,48 +71,42 @@ class LinkedList:
         except AttributeError:
             raise IndexError('Empty lists can\'t pop. Welp.')
 
-    def shift(self):  # simplify
-        #
-        def _shift(node=self.List):
+    def shift(self):
+        '''Remove and return the value at the tail of the list.'''
+        node = self.List
+
+        while node:
             if node.post:
-                return _shift(node=node.post)
+                node = node.post
 
             else:
-                val = node.val
-
                 try:
                     node.prev.post = None
 
                 except AttributeError:
                     self.List = None
 
-                return val
-
-        if self.List:
-            return _shift(self.List)
+                return node.val
 
         raise IndexError('Empty lists can\'t shift. Darn.')
 
-    def remove(self, val):  # simplify
-        #
-        def _remove(node):
+    def remove(self, val):
+        '''Remove the first instance of 'val' found in the list.'''
+        node = self.List
+
+        while node:
             if node.val == val:
                 node.post.prev = node.prev
                 node.prev.post = node.post
+                break
 
-            elif node.post:
-                _remove(node.post)
-
-            else:
-                raise ValueError('Can\'t delete something that ain\'t there.')
-
-        if self.List:
-            _remove(self.List)
+            node = node.post
 
         else:
             raise ValueError('Can\'t delete something that ain\'t there.')
 
     def size(self):
+        '''Return the length of the list.'''
         n = 0
         node = self.List
 
@@ -150,19 +116,14 @@ class LinkedList:
 
         return n
 
-    def contains(self, val):  # simplify
+    def contains(self, val):
+        '''Return True if the list contains 'val'; otherwise, False.'''
+        node = self.List
 
-        def _search(node):
-            if node.val != val:
-                if node.post:
-                    return _search(node.post)
-
-                else:
-                    return False
-            else:
+        while node:
+            if node.val == val:
                 return True
 
-        if self.List:
-            return _search(self.List)
+            node = node.post
 
         return False
