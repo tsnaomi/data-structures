@@ -53,3 +53,14 @@ class Stack:
 
         except AttributeError:
             raise ValueError('Ain\'t no pancakes in this stack.')
+
+    def size(self):
+        '''Return the size of the stack.'''
+        n = 0
+        node = self.Stack
+
+        while node:
+            n += 1
+            node = node.post
+
+        return n
