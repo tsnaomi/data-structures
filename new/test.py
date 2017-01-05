@@ -243,7 +243,7 @@ class TestBinaryHeap(unittest.TestCase):
         self.minHeap.push(-1)
         self.assertEqual(self.minHeap.Heap, [-1, -1, 0, 2, 8, 4, 3, 6])
 
-        # max heap (assuming, when instatiating a heap with an iterable, the
+        # max heap (assuming, when instantiating a heap with an iterable, the
         # iterable's items are pushed one-by-one)
         self.assertEqual(self.maxHeap.Heap, [8, 6, 2, 0, 4])
         self.maxHeap.push(5)
