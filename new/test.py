@@ -3,6 +3,7 @@ import unittest
 from linked_list import LinkedList
 from stack import Stack
 from queue import Queue
+from binary_heap import BinaryHeap
 
 
 # doubly-linked list
@@ -220,6 +221,70 @@ class TestQueue(unittest.TestCase):
             self.emptyQueue.enqueue(i)
 
         self.assertEqual(self.emptyQueue.size(), 100)
+
+
+class TestBinaryHeap(unittest.TestCase):
+
+    def setUp(self):
+        # min heap
+        self.minHeap = BinaryHeap(Min=True, iterable=[0, 2, 4, 6, 8])
+
+        # max heap
+        self.maxHeap = BinaryHeap(Min=False, iterable=[0, 2, 4, 6, 8])
+
+    def test_push(self):
+        '''Test pushing items into a binary heap.'''
+        # min heap
+        self.assertEqual(self.minHeap.Heap, [0, 2, 4, 6, 8])
+        self.minHeap.push(3)
+        self.assertEqual(self.minHeap.Heap, [0, 2, 3, 6, 8, 4])
+        self.minHeap.push(-1)
+        self.assertEqual(self.minHeap.Heap, [-1, 2, 0, 6, 8, 4, 3])
+        self.minHeap.push(-1)
+        self.assertEqual(self.minHeap.Heap, [-1, -1, 0, 2, 8, 4, 3, 6])
+
+        # max heap (assuming, when instatiating a heap with an iterable, the
+        # iterable's items are pushed one-by-one)
+        self.assertEqual(self.maxHeap.Heap, [8, 6, 2, 0, 4])
+        self.maxHeap.push(5)
+        self.assertEqual(self.maxHeap.Heap, [8, 6, 5, 0, 4, 2])
+        self.maxHeap.push(9)
+        self.assertEqual(self.maxHeap.Heap, [9, 6, 8, 0, 4, 2, 5])
+        self.maxHeap.push(8)
+        self.assertEqual(self.maxHeap.Heap, [9, 8, 8, 6, 4, 2, 5, 0])
+
+    def test_pop(self):
+        '''Test popping off and returning the top items in a binary heap.'''
+        # min heap
+        self.assertEqual(self.minHeap.pop(), 0)
+        self.assertEqual(self.minHeap.Heap, [2, 6, 4, 8])
+        self.assertEqual(self.minHeap.pop(), 2)
+        self.assertEqual(self.minHeap.Heap, [4, 6, 8])
+        self.assertEqual(self.minHeap.pop(), 4)
+        self.assertEqual(self.minHeap.Heap, [6, 8])
+        self.assertEqual(self.minHeap.pop(), 6)
+        self.assertEqual(self.minHeap.Heap, [8])
+        self.assertEqual(self.minHeap.pop(), 8)
+        self.assertEqual(self.minHeap.Heap, [])
+
+        with self.assertRaises(ValueError):
+            self.minHeap.pop()
+
+        # max heap
+        self.assertEqual(self.maxHeap.pop(), 8)
+        self.assertEqual(self.maxHeap.Heap, [6, 4, 2, 0])
+        self.assertEqual(self.maxHeap.pop(), 6)
+        self.assertEqual(self.maxHeap.Heap, [4, 0, 2])
+        self.assertEqual(self.maxHeap.pop(), 4)
+        self.assertEqual(self.maxHeap.Heap, [2, 0])
+        self.assertEqual(self.maxHeap.pop(), 2)
+        self.assertEqual(self.maxHeap.Heap, [0])
+        self.assertEqual(self.maxHeap.pop(), 0)
+        self.assertEqual(self.maxHeap.Heap, [])
+
+        with self.assertRaises(ValueError):
+            self.minHeap.pop()
+
 
 if __name__ == '__main__':
     unittest.main()
