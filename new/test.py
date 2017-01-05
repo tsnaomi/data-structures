@@ -2,6 +2,7 @@ import unittest
 
 from linked_list import LinkedList
 from stack import Stack
+from queue import Queue
 
 
 # doubly-linked list
@@ -144,12 +145,81 @@ class TestStack(unittest.TestCase):
             self.Stack.pop()
 
     def test_peek(self):
-        '''Test seeing the top of the stack w/o modifying it.'''
+        '''Test peeking at the top of the stack w/o modifying the stack.'''
         self.assertEqual(self.Stack.peek(), 4)
 
         with self.assertRaises(ValueError):
             self.emptyStack.peek()
 
+    def test_size(self):
+        '''Test returning the size of the stack.'''
+        for i in range(100):
+            self.emptyStack.push(i)
+
+        self.assertEqual(self.emptyStack.size(), 100)
+
+
+# FIFO
+class TestQueue(unittest.TestCase):
+
+    def setUp(self):
+        self.emptyQueue = Queue()
+        self.Queue = Queue()
+
+        for i in range(5):
+            self.Queue.enqueue(i)
+
+    def test_tup(self):
+        '''Test returning the queue as a tuple literal.'''
+        self.assertEqual(self.emptyQueue.tup(), ())
+        tup = (1, 3.14, 'foo', True)
+
+        for i in tup:
+            self.emptyQueue.enqueue(i)
+
+        self.assertEqual(self.emptyQueue.tup(), tup)
+
+    def test_repr(self):
+        '''Test returning the queue as a string.'''
+        self.assertEqual(repr(self.emptyQueue), '()')
+        tup = (1, 3.14, 'foo', True)
+
+        for i in tup:
+            self.emptyQueue.enqueue(i)
+
+        self.assertEqual(repr(self.emptyQueue), "(1, 3.14, 'foo', True)")
+
+    def test_enqueue(self):
+        '''Test adding items to the front of the queue.'''
+        self.Queue.enqueue(True)
+        self.assertEqual(self.Queue.tup(), (0, 1, 2, 3, 4, True))
+
+    def test_dequeue(self):
+        '''Test removing items from the front of the queue.'''
+        self.assertEqual(self.Queue.dequeue(), 0)
+        self.assertEqual(self.Queue.tup(), (1, 2, 3, 4))
+        self.assertEqual(self.Queue.dequeue(), 1)
+        self.assertEqual(self.Queue.dequeue(), 2)
+        self.assertEqual(self.Queue.dequeue(), 3)
+        self.assertEqual(self.Queue.dequeue(), 4)
+        self.assertEqual(self.Queue.tup(), ())
+
+        with self.assertRaises(ValueError):
+            self.Queue.dequeue()
+
+    def test_peek(self):
+        '''Test peeking at the first enqueued item w/o modifying the queue.'''
+        self.assertEqual(self.Queue.peek(), 0)
+
+        with self.assertRaises(ValueError):
+            self.emptyQueue.peek()
+
+    def test_size(self):
+        '''Test returning the size of the queue.'''
+        for i in range(100):
+            self.emptyQueue.enqueue(i)
+
+        self.assertEqual(self.emptyQueue.size(), 100)
 
 if __name__ == '__main__':
     unittest.main()
