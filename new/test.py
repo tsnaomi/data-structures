@@ -1,6 +1,7 @@
 import unittest
 
 from linked_list import LinkedList
+from stack import Stack
 
 
 # doubly-linked list
@@ -92,6 +93,62 @@ class TestLinkedList(unittest.TestCase):
         '''Test returning T/F for whether the list contains certain values.'''
         self.assertTrue(self.List.contains(2))
         self.assertFalse(self.List.contains(10))
+
+
+# LIFO
+class TestStack(unittest.TestCase):
+
+    def setUp(self):
+        self.emptyStack = Stack()
+        self.Stack = Stack()
+
+        for i in range(5):
+            self.Stack.push(i)
+
+    def test_tup(self):
+        '''Test returning the stack as a tuple literal.'''
+        self.assertEqual(self.emptyStack.tup(), ())
+        tup = (1, 3.14, 'foo', True)
+
+        for i in tup:
+            self.emptyStack.push(i)
+
+        self.assertEqual(self.emptyStack.tup(), (True, 'foo', 3.14, 1))
+
+    def test_repr(self):
+        '''Test returning the stack as a string.'''
+        self.assertEqual(repr(self.emptyStack), '()')
+        tup = (1, 3.14, 'foo', True)
+
+        for i in tup:
+            self.emptyStack.push(i)
+
+        self.assertEqual(repr(self.emptyStack), "(True, 'foo', 3.14, 1)")
+
+    def test_push(self):
+        '''Test pushing items on top of the stack.'''
+        self.Stack.push(True)
+        self.assertEqual(self.Stack.tup(), (True, 4, 3, 2, 1, 0))
+
+    def test_pop(self):
+        '''Test popping off and returning the top of the stack.'''
+        self.assertEqual(self.Stack.pop(), 4)
+        self.assertEqual(self.Stack.tup(), (3, 2, 1, 0))
+        self.assertEqual(self.Stack.pop(), 3)
+        self.assertEqual(self.Stack.pop(), 2)
+        self.assertEqual(self.Stack.pop(), 1)
+        self.assertEqual(self.Stack.pop(), 0)
+        self.assertEqual(self.Stack.tup(), ())
+
+        with self.assertRaises(ValueError):
+            self.Stack.pop()
+
+    def test_peek(self):
+        '''Test seeing the top of the stack w/o modifying it.'''
+        self.assertEqual(self.Stack.peek(), 4)
+
+        with self.assertRaises(ValueError):
+            self.emptyStack.peek()
 
 
 if __name__ == '__main__':
