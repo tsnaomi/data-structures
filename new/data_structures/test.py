@@ -1,3 +1,5 @@
+# coding=utf-8
+
 import unittest
 
 from linked_list import LinkedList
@@ -26,16 +28,6 @@ class TestLinkedList(unittest.TestCase):
             self.emptyList.append(i)
 
         self.assertEqual(self.emptyList.tup(), tup)
-
-    def test_repr(self):
-        '''Test returning the linked list as a string.'''
-        self.assertEqual(repr(self.emptyList), '()')
-        tup = (1, 3.14, 'foo', True)
-
-        for i in tup:
-            self.emptyList.append(i)
-
-        self.assertEqual(repr(self.emptyList), "(1, 3.14, 'foo', True)")
 
     def test_insert(self):
         '''Test inserting values at the head of list the list.'''
@@ -117,16 +109,6 @@ class TestStack(unittest.TestCase):
 
         self.assertEqual(self.emptyStack.tup(), (True, 'foo', 3.14, 1))
 
-    def test_repr(self):
-        '''Test returning the stack as a string.'''
-        self.assertEqual(repr(self.emptyStack), '()')
-        tup = (1, 3.14, 'foo', True)
-
-        for i in tup:
-            self.emptyStack.push(i)
-
-        self.assertEqual(repr(self.emptyStack), "(True, 'foo', 3.14, 1)")
-
     def test_push(self):
         '''Test pushing items on top of the stack.'''
         self.Stack.push(True)
@@ -179,16 +161,6 @@ class TestQueue(unittest.TestCase):
             self.emptyQueue.enqueue(i)
 
         self.assertEqual(self.emptyQueue.tup(), tup)
-
-    def test_repr(self):
-        '''Test returning the queue as a string.'''
-        self.assertEqual(repr(self.emptyQueue), '()')
-        tup = (1, 3.14, 'foo', True)
-
-        for i in tup:
-            self.emptyQueue.enqueue(i)
-
-        self.assertEqual(repr(self.emptyQueue), "(1, 3.14, 'foo', True)")
 
     def test_enqueue(self):
         '''Test adding items to the front of the queue.'''

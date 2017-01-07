@@ -50,11 +50,6 @@ class BinaryHeap:
         except ValueError:
             pass
 
-    def push(self, val):
-        '''Push 'val' in to the heap.'''
-        self.Heap.append(val)
-        self._swap_upward(len(self.Heap) - 1, val)
-
     def _swap_downward(self, p, p_val):
         '''Maintain the heap property after popping.'''
         l, r = self._left(p), self._right(p)
@@ -81,6 +76,11 @@ class BinaryHeap:
             self.Heap[p] = c_val
             self.Heap[c] = p_val
             self._swap_downward(c, p_val)
+
+    def push(self, val):
+        '''Push 'val' in to the heap.'''
+        self.Heap.append(val)
+        self._swap_upward(len(self.Heap) - 1, val)
 
     def pop(self):
         '''Pop off and return the top value in the heap.'''
