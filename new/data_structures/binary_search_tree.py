@@ -127,17 +127,17 @@ class BinarySearchTree:
                     return setattr(parent, child, BinarySearchTree())
 
                 # if the tree has 1 child, replace the tree with its child
-                elif self.right.root is None:
+                if self.right.root is None:
                     return setattr(parent, child, self.left)
 
-                elif self.left.root is None:
+                if self.left.root is None:
                     return setattr(parent, child, self.right)
 
                 # if the tree has 2 children, do something complicated...
                 return self._delete(n, parent)
 
             # search down the left side of the tree
-            elif n < self.root:
+            if n < self.root:
                 return self.left.delete(n, self, 'left')
 
             # search down the right side of the tree
