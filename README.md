@@ -14,6 +14,6 @@
 - Quicksort
 - Radix sort
 
-<sub><sup>1</sup>These are my feelings towards BSTs:</sub>
+<sub><sup>1</sup>These are my feelings toward BSTs:</sub>
 
 ![image that encapsulates my feelings](http://tsnaomi.net/images/bst.png)
