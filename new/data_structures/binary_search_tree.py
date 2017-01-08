@@ -9,42 +9,32 @@ class BinarySearchTree:
         if root is None:
             self.root, self.left, self.right = None, None, None
 
-        elif isinstance(root, (int, float)):
+        else:
             self.root = root
             self.left = BinarySearchTree()
             self.right = BinarySearchTree()
 
-        else:
-            raise TypeError('Accio interger! Accio float!')
-
     def insert(self, n):
         '''Insert node 'n' into the tree.'''
-        if isinstance(n, (int, float)):
-            if self.root is None:
-                self.root = n
-                self.left = BinarySearchTree()
-                self.right = BinarySearchTree()
+        if self.root is None:
+            self.root = n
+            self.left = BinarySearchTree()
+            self.right = BinarySearchTree()
 
-            elif self.root > n:
-                self.left.insert(n)
+        elif self.root > n:
+            self.left.insert(n)
 
-            elif self.root < n:
-                self.right.insert(n)
-
-        else:
-            raise TypeError('Accio integer! Accio float!')
+        elif self.root < n:
+            self.right.insert(n)
 
     def contains(self, n):
         '''Return True if the tree contains node 'n'; otherwise, False.'''
-        if isinstance(n, (int, float)):
-            node = self
+        node = self
 
-            while node.root != n and node.root is not None:
-                node = node.left if node.root > n else node.right
+        while node.root != n and node.root is not None:
+            node = node.left if node.root > n else node.right
 
-            return node.root == n
-
-        raise TypeError('Accio interger! Accio float!')
+        return node.root == n
 
     def size(self):
         '''Return the number of nodes in the tree.'''
@@ -154,7 +144,7 @@ class BinarySearchTree:
             return self.right.delete(n, self, 'right')
 
     def _delete(self, n, parent):
-        '''Replace 'n' with leftmost the leftmost child of its right child.'''
+        '''Replace 'n' with the leftmost child of its right child.'''
         leftmost_parent = self
         leftmost = self.right
 

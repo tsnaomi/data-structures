@@ -369,10 +369,6 @@ class TestBinarySearchTree(unittest.TestCase):
         with self.assertRaises(AttributeError):
             self.emptyTree.left.root
 
-        # initializing a tree with a forbidden value
-        with self.assertRaises(TypeError):
-            BinarySearchTree('twig')
-
     def test_insert(self):
         '''Test inserting nodes into a binary search tree.'''
         # inserting into a non-empty tree
@@ -396,10 +392,6 @@ class TestBinarySearchTree(unittest.TestCase):
         self.emptyTree.insert(9)
         self.assertEqual(self.emptyTree.root, 9)
 
-        # inserting a forbidden value
-        with self.assertRaises(TypeError):
-            self.tree.insert('leaf')
-
     def test_contains(self):
         '''Test checking whether a BST contains certain nodes.'''
         # contains() with a non-empty tree
@@ -412,10 +404,6 @@ class TestBinarySearchTree(unittest.TestCase):
 
         # contains() with an empty tree
         self.assertFalse(self.emptyTree.contains(4))
-
-        # contains() with a forbidden value
-        with self.assertRaises(TypeError):
-            self.tree.contains('blossom')
 
     def test_size(self):
         '''Test returning the size of a binary search tree.'''
