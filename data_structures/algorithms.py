@@ -1,43 +1,74 @@
 #!usr/bin/env Python
 
+# TODO: rename arguments, clean if-name-equals-main
 
-# attribution: http://en.wikipedia.org/wiki/Merge_sort
+
+def insert_sort(ul):
+    for i in range(1, len(ul)):
+        num, index = ul[i], i
+        while index > 0 and ul[index - 1] > num:
+            ul[index] = ul[index - 1]
+            index -= 1
+        ul[index] = num
+    return ul
+
 
 def merge_sort(ul):
+
+    def merge(left, right):
+        l = []
+        while len(left) > 0 or len(right) > 0:
+            if len(left) > 0 and len(right) > 0:
+                if left[0] <= right[0]:
+                    l.append(left[0])
+                    left = left[1:]
+                else:
+                    l.append(right[0])
+                    right = right[1:]
+            elif len(left) > 0:
+                # l.append(left[0])
+                # left = left[1:]
+                l.extend(left)
+                left = []
+            else:
+                # l.append(right[0])
+                # right = right[1:]
+                l.extend(right)
+                right = []
+        return l
+
     if len(ul) > 1:
         mid = len(ul) // 2
         left = merge_sort(ul[:mid])
         right = merge_sort(ul[mid:])
-        ul = _merge(left, right)
+        ul = merge(left, right)
     return ul
 
 
-def _merge(left, right):
-    l = []
-    while len(left) > 0 or len(right) > 0:
-        if len(left) > 0 and len(right) > 0:
-            if left[0] <= right[0]:
-                l.append(left[0])
-                left = left[1:]
-            else:
-                l.append(right[0])
-                right = right[1:]
-        elif len(left) > 0:
-            # l.append(left[0])
-            # left = left[1:]
-            l.extend(left)
-            left = []
-        else:
-            # l.append(right[0])
-            # right = right[1:]
-            l.extend(right)
-            right = []
-    return l
-
 if __name__ == '__main__':
-    print 'Calculating...'
     # from random import shuffle
     from timeit import timeit
+
+    print 'Calculating'
+
+    best = timeit('insert_sort([i for i in range(1, 1001)])',
+                  setup='from __main__ import insert_sort', number=100)
+    worst = timeit('insert_sort([i for i in range(1, 1001)[::-1]])',
+                   setup='from __main__ import insert_sort', number=100)
+
+    best, worst = best / 100, worst / 100
+
+    print '''
+        \n\tIt takes this insert_sort() method approximately \033[1m%s\033[0m
+        seconds to 'sort' a \033[1mpre-sorted\033[0m list of numbers from 1 to
+        1000 -- the best case input for an implementation of insertion sort.
+        \n\tIn contrast, it takes approximately \033[1m%s\033[0m seconds for
+        it to sort a \033[1mreverse\033[0m list of the same set of numbers --
+        the worst case input for such an algorithm.
+        \n\t'Twas about \033[1m%s\033[0m%% faster with the pre-sorted list.
+        ''' % (best, worst, round(((worst - best) / worst) * 100, 2))
+
+    print 'Calculating...'
     asc = [i for i in range(1, 1001)]
     desc = asc[::-1]
     a1, a2, inter = list(asc[:501]), list(asc[501:]), []
