@@ -2,11 +2,13 @@
 
 ## Data Structures
 - Doubly-linked list
-- Queue (*fifo*) — something British
-- Stack (*lifo*) — something having to do with pancakes
+- Queue (*something British*)
+- Stack (*something having to do with pancakes*)
 - Binary heap
-- Graph (**next**: implement traversal and weighted edges)
-- Binary search tree<sup>1</sup> (**next**: implement self-balancing)
+- Graph 
+  - **todo**: implement traversal and weighted edges
+- Binary search tree<sup>1</sup> 
+  - **todo**: implement self-balancing
 - ~~Hash table~~
 
 ## Algorithms
