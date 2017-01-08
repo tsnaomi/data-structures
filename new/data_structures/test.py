@@ -2,9 +2,12 @@
 
 import unittest
 
+from random import shuffle
+
 from linked_list import LinkedList
 from stack import Stack
 from queue import Queue
+from graph import Graph
 from binary_heap import BinaryHeap
 
 
@@ -256,6 +259,98 @@ class TestBinaryHeap(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             self.minHeap.pop()
+
+
+class TestGraph(unittest.TestCase):
+
+    def setUp(self):
+        self.graph = Graph()
+        self.emptyGraph = Graph()
+        self.values = [3, 1, 4, 5, 9, 2, 6, 8, 7, 0]
+        self.pairs = map(set, [(3, 4), (9, 2), (4, 2)])
+
+        for n in self.values:
+            self.graph.add_node(n)
+
+        for n1, n2 in self.pairs:
+            self.graph.add_edge(n1, n2)
+
+        self.values.sort()
+
+    def test_add_node(self):
+        '''Test adding nodes to a graph.'''
+        # implicitly test Graph.nodes()
+        self.assertEqual(sorted(self.graph.nodes()), self.values)
+        self.assertEqual(self.emptyGraph.nodes(), [])
+
+        # test adding a duplicate node
+        self.graph.add_node(0)
+        self.assertEqual(sorted(self.graph.nodes()), self.values)
+
+    def test_add_edge(self):
+        '''Test adding edges to a graph.'''
+        # implicitly test Graph.edges()
+        self.assertEqual(self.graph.edges(), self.pairs)
+        self.assertEqual(self.emptyGraph.edges(), [])
+
+        # test adding an existent edge
+        self.graph.add_edge(3, 4)
+        self.assertEqual(self.graph.edges(), self.pairs)
+
+        # test adding an edge to a non-existent node
+        self.graph.add_edge(3, 10)
+        self.assertEqual(self.graph.edges(), self.pairs + [set((3, 10))])
+        self.assertEqual(sorted(self.graph.nodes()), self.values + [10])
+
+        # test adding an edge to multiple non-existent nodes
+        self.emptyGraph.add_edge(2, 1)
+        self.assertEqual(self.emptyGraph.edges(), [set((2, 1))])
+        self.assertEqual(self.emptyGraph.nodes(), [1, 2])
+
+    def test_del_node(self):
+        '''Test deleting nodes from a graph.'''
+        expected = sorted([3, 5, 9, 2, 6, 8, 7, 0])
+        self.graph.del_node(1)
+        self.graph.del_node(4)
+        self.assertEqual(sorted(self.graph.nodes()), expected)
+        self.assertEqual(self.graph.edges(), [set((9, 2))])
+
+        # test deleting fron an empty graph
+        with self.assertRaises(ValueError):
+            self.emptyGraph.del_node(0)
+
+    def test_has_node(self):
+        '''Test checking whether a graph contains certain nodes.'''
+        for n in self.values:
+            self.assertTrue(self.graph.has_node(n))
+
+        self.assertFalse(self.graph.has_node(99))
+        self.assertFalse(self.emptyGraph.has_node(99))
+
+    def test_neighbors(self):
+        '''Test listing the neighbors of nodes in a graph.'''
+        self.assertEqual(self.graph.neighbors(0), [])
+        self.assertEqual(self.graph.neighbors(3), [4])
+        self.assertEqual(sorted(self.graph.neighbors(4)), sorted([3, 2]))
+
+        # test listing neighbors for non-existent nodes
+        with self.assertRaises(ValueError):
+            self.graph.neighbors(99)
+
+        with self.assertRaises(ValueError):
+            self.emptyGraph.neighbors(99)
+
+    def test_is_adjacent(self):
+        '''Test checking whether two nodes are adjacent.'''
+        self.assertFalse(self.graph.is_adjacent(0, 9))
+        self.assertTrue(self.graph.is_adjacent(4, 3))
+
+        # test checking adjacency with non-existent nodes
+        with self.assertRaises(ValueError):
+            self.graph.is_adjacent(0, 99)
+
+        with self.assertRaises(ValueError):
+            self.emptyGraph.is_adjacent(0, 99)
 
 
 if __name__ == '__main__':
