@@ -4,9 +4,9 @@
 - Doubly-linked list
 - Queue (*fifo*) — something British
 - Stack (*lifo*) — something having (nothing?) to do with pancakes
-- Graph
+- Graph (next: *implement traversal and weighted edges*)
 - ~~Hash table~~
-- ~~Binary search tree~~<sup>1</sup>
+- ~~Binary search tree~~<sup>1</sup> (next: *implement self-balancing*)
 
 ## Algorithms
 - Insertion sort

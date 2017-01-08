@@ -2,17 +2,15 @@
 
 import unittest
 
-from random import shuffle
-
 from linked_list import LinkedList
 from stack import Stack
 from queue import Queue
 from graph import Graph
 from binary_heap import BinaryHeap
+from binary_search_tree import BinarySearchTree
 
 
-# doubly-linked list
-class TestLinkedList(unittest.TestCase):
+class TestLinkedList(unittest.TestCase):  # doubly-linked list
 
     def setUp(self):
         self.emptyList = LinkedList()
@@ -92,8 +90,7 @@ class TestLinkedList(unittest.TestCase):
         self.assertFalse(self.List.contains(10))
 
 
-# LIFO
-class TestStack(unittest.TestCase):
+class TestStack(unittest.TestCase):  # LIFO
 
     def setUp(self):
         self.emptyStack = Stack()
@@ -145,8 +142,7 @@ class TestStack(unittest.TestCase):
         self.assertEqual(self.emptyStack.size(), 100)
 
 
-# FIFO
-class TestQueue(unittest.TestCase):
+class TestQueue(unittest.TestCase):  # FIFO
 
     def setUp(self):
         self.emptyQueue = Queue()
@@ -351,6 +347,237 @@ class TestGraph(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             self.emptyGraph.is_adjacent(0, 99)
+
+
+class TestBinarySearchTree(unittest.TestCase):
+
+    def setUp(self):
+        self.tree = BinarySearchTree(4)
+        self.emptyTree = BinarySearchTree()
+        self.leaves = [3, 12, 8, 27, 13, 28, 31, 29, 30, 33, 44, 50, 34, 35]
+
+    def test_init(self):
+        '''Test initializing a binary search tree.'''
+        # initializing a non-empty tree
+        self.assertEqual(self.tree.root, 4)
+        self.assertIsNone(self.tree.left.root)
+        self.assertIsNone(self.tree.right.root)
+
+        # initializing an empty tree
+        self.assertIsNone(self.emptyTree.root)
+
+        with self.assertRaises(AttributeError):
+            self.emptyTree.left.root
+
+        # initializing a tree with a forbidden value
+        with self.assertRaises(TypeError):
+            BinarySearchTree('twig')
+
+    def test_insert(self):
+        '''Test inserting nodes into a binary search tree.'''
+        # inserting into a non-empty tree
+        for n in self.leaves:
+            self.tree.insert(n)
+
+        self.assertEqual(self.tree.left.root, 3)
+        self.assertEqual(self.tree.right.root, 12)
+        self.assertEqual(self.tree.right.left.root, 8)
+        self.assertEqual(self.tree.right.right.root, 27)
+
+        # inserting an existing value
+        self.tree.insert(4)
+        self.assertEqual(self.tree.root, 4)
+        self.assertEqual(self.tree.left.root, 3)
+        self.assertEqual(self.tree.right.root, 12)
+        self.assertEqual(self.tree.right.left.root, 8)
+        self.assertEqual(self.tree.right.right.root, 27)
+
+        # inserting into an empty tree
+        self.emptyTree.insert(9)
+        self.assertEqual(self.emptyTree.root, 9)
+
+        # inserting a forbidden value
+        with self.assertRaises(TypeError):
+            self.tree.insert('leaf')
+
+    def test_contains(self):
+        '''Test checking whether a BST contains certain nodes.'''
+        # contains() with a non-empty tree
+        self.assertTrue(self.tree.contains(4))
+
+        for n in self.leaves:
+            self.assertFalse(self.tree.contains(n))
+            self.tree.insert(n)
+            self.assertTrue(self.tree.contains(n))
+
+        # contains() with an empty tree
+        self.assertFalse(self.emptyTree.contains(4))
+
+        # contains() with a forbidden value
+        with self.assertRaises(TypeError):
+            self.tree.contains('blossom')
+
+    def test_size(self):
+        '''Test returning the size of a binary search tree.'''
+        # size of a non-empty tree
+        self.assertEqual(self.tree.size(), 1)
+
+        for i, n in enumerate(self.leaves, start=2):
+            self.tree.insert(n)
+            self.assertEqual(self.tree.size(), i)
+
+        # size of an empty tree
+        self.assertEqual(self.emptyTree.size(), 0)
+
+    def test_depth(self):
+        '''Test returning the depth of a binary search tree.'''
+        # depth of a non-empty tree
+        self.assertEqual(self.tree.depth(), 1)
+
+        for n in self.leaves[:5]:
+            self.tree.insert(n)
+
+        self.assertEqual(self.tree.depth(), 4)
+
+        for n in self.leaves[5:10]:
+            self.tree.insert(n)
+
+        self.assertEqual(self.tree.depth(), 7)
+
+        for n in self.leaves[10:]:
+            self.tree.insert(n)
+
+        self.assertEqual(self.tree.depth(), 9)
+
+        # depth of an empty tree
+        self.assertEqual(self.emptyTree.depth(), 0)
+
+    def test_balance(self):
+        '''Test returning the balance of a binary search tree.'''
+        # balance of a non-empty tree (right-heavy)
+        for n in self.leaves:
+            self.tree.insert(n)
+
+        self.assertEqual(self.tree.get_balance(), 7)
+        self.tree.insert(38)
+        self.assertEqual(self.tree.get_balance(), 8)
+        self.tree.insert(37)
+        self.assertEqual(self.tree.get_balance(), 9)
+        self.tree.insert(2)
+        self.assertEqual(self.tree.get_balance(), 8)
+
+        # balance of an empty tree
+        self.assertEqual(self.emptyTree.get_balance(), 0)
+
+        # blanace of a non-empty tree (left-heavy)
+        for n in [4, 1, 2, 3, 5]:
+            self.emptyTree.insert(n)
+
+        self.assertEqual(self.emptyTree.get_balance(), -2)
+
+    def test_in_order(self):
+        '''Test the in-order traversal of a binary search tree.'''
+        # in-order traversal of a non-empty tree
+        for n in self.leaves:
+            self.tree.insert(n)
+
+        expected = [3, 4, 8, 12, 13, 27, 28, 29, 30, 31, 33, 34, 35, 44, 50]
+        self.assertEqual(list(self.tree.in_order()), expected)
+
+        # in-order traversal of an empty tree
+        self.assertEqual(list(self.emptyTree.in_order()), [])
+
+    def test_pre_order(self):
+        '''Test the pre-order traversal of a binary search tree.'''
+        # pre-order traversal of a non-empty tree
+        for n in self.leaves:
+            self.tree.insert(n)
+
+        expected = [4, 3, 12, 8, 27, 13, 28, 31, 29, 30, 33, 44, 34, 35, 50]
+        self.assertEqual(list(self.tree.pre_order()), expected)
+
+        # pre-order traversal of an empty tree
+        self.assertEqual(list(self.emptyTree.pre_order()), [])
+
+    def test_post_order(self):
+        '''Test the post-order traversal of a binary search tree.'''
+        # post-order traversal of a non-empty tree
+        for n in self.leaves:
+            self.tree.insert(n)
+
+        expected = [3, 8, 13, 30, 29, 35, 34, 50, 44, 33, 31, 28, 27, 12, 4]
+        self.assertEqual(list(self.tree.post_order()), expected)
+
+        # post-order traversal of an empty tree
+        self.assertEqual(list(self.emptyTree.post_order()), [])
+
+    def test_breadth_first(self):
+        '''Test the breadth-first traversal of a binary search tree.'''
+        # breadth-first traversal of a non-empty tree
+        for n in self.leaves:
+            self.tree.insert(n)
+
+        expected = [4, 3, 12, 8, 27, 13, 28, 31, 29, 33, 30, 44, 34, 50, 35]
+        self.assertEqual(list(self.tree.breadth_first()), expected)
+
+        # breadth-first traversal of an empty tree
+        self.assertEqual(list(self.emptyTree.breadth_first()), [])
+
+    def test_delete(self):
+        '''Test deleting nodes from a binary search tree.'''
+        for n in self.leaves:
+            self.tree.insert(n)
+
+        # deleting a node with no descendants
+        self.tree.delete(35)
+        expected = [4, 3, 12, 8, 27, 13, 28, 31, 29, 33, 30, 44, 34, 50]
+        self.assertEqual(list(self.tree.breadth_first()), expected)
+
+        # deleting a node with one descendant (left)
+        self.tree.delete(3)
+        expected = [4, 12, 8, 27, 13, 28, 31, 29, 33, 30, 44, 34, 50]
+        self.assertEqual(list(self.tree.breadth_first()), expected)
+
+        # test insertion after the deletion of a terminal node
+        self.tree.insert(3)
+        expected = [4, 3, 12, 8, 27, 13, 28, 31, 29, 33, 30, 44, 34, 50]
+        self.assertEqual(list(self.tree.breadth_first()), expected)
+
+        # deleting a node with one descendant (right)
+        self.tree.delete(29)
+        expected = [4, 3, 12, 8, 27, 13, 28, 31, 30, 33, 44, 34, 50]
+        self.assertEqual(list(self.tree.breadth_first()), expected)
+
+        # test insertion after the deletion of a non-terminal node
+        self.tree.insert(29)
+        expected = [4, 3, 12, 8, 27, 13, 28, 31, 30, 33, 29, 44, 34, 50]
+        self.assertEqual(list(self.tree.breadth_first()), expected)
+
+        # deleting a node with two (left & right) descendants
+        self.tree.delete(44)
+        self.tree.insert(51)
+        expected = [4, 3, 12, 8, 27, 13, 28, 31, 30, 33, 29, 50, 34, 51]
+        self.assertEqual(list(self.tree.breadth_first()), expected)
+
+        # deleting a node with several right-branching descendants
+        self.tree.delete(28)
+        expected = [4, 3, 12, 8, 27, 13, 31, 30, 33, 29, 50, 34, 51]
+        self.assertEqual(list(self.tree.breadth_first()), expected)
+
+        # deleting a node with several left- and right-branching descendants
+        self.tree.insert(29.5)
+        self.tree.delete(27)
+        expected = [4, 3, 12, 8, 29, 13, 31, 30, 33, 29.5, 50, 34, 51]
+        self.assertEqual(list(self.tree.breadth_first()), expected)
+
+        # deleting the root
+        self.tree.delete(4)
+        expected = [8, 3, 12, 29, 13, 31, 30, 33, 29.5, 50, 34, 51]
+        self.assertEqual(list(self.tree.breadth_first()), expected)
+
+        # deleting from an empty tree
+        self.emptyTree.delete(4)
+        self.assertEqual(list(self.emptyTree.breadth_first()), [])
 
 
 if __name__ == '__main__':
