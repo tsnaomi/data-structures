@@ -4,6 +4,7 @@
 - Doubly-linked list
 - Queue (*fifo*) — something British
 - Stack (*lifo*) — something having to do with pancakes
+- Binary heap
 - Graph
 - ~~Hash table~~
 - ~~Binary search tree~~<sup>1</sup>
