@@ -5,9 +5,9 @@
 - Queue (*fifo*) — something British
 - Stack (*lifo*) — something having to do with pancakes
 - Binary heap
-- Graph (next: *implement traversal and weighted edges*)
+- Graph (**next**: implement traversal and weighted edges)
+- Binary search tree<sup>1</sup> (**next**: implement self-balancing)
 - ~~Hash table~~
-- ~~Binary search tree~~<sup>1</sup> (next: *implement self-balancing*)
 
 ## Algorithms
 - Insertion sort
