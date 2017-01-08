@@ -3,7 +3,8 @@
 ## Data Structures
 - Doubly-linked list
 - Queue (*fifo*) — something British
-- Stack (*lifo*) — something having (nothing?) to do with pancakes
+- Stack (*lifo*) — something having to do with pancakes
+- Binary heap
 - Graph (next: *implement traversal and weighted edges*)
 - ~~Hash table~~
 - ~~Binary search tree~~<sup>1</sup> (next: *implement self-balancing*)
