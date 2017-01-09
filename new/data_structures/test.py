@@ -1,13 +1,15 @@
 # coding=utf-8
 
+import re
 import unittest
 
-from linked_list import LinkedList
-from stack import Stack
-from queue import Queue
-from graph import Graph
 from binary_heap import BinaryHeap
 from binary_search_tree import BinarySearchTree
+from linked_list import LinkedList
+from graph import Graph
+from hash_table import HashTable
+from queue import Queue
+from stack import Stack
 
 
 class TestLinkedList(unittest.TestCase):  # doubly-linked list
@@ -566,6 +568,41 @@ class TestBinarySearchTree(unittest.TestCase):
         # deleting from an empty tree
         self.emptyTree.delete(4)
         self.assertEqual(list(self.emptyTree.breadth_first()), [])
+
+
+class TestHashTable(unittest.TestCase):
+
+    def setUp(self):
+        self.table1 = HashTable()
+        self.table2 = HashTable(100)
+
+        # extract unique words from Jabberwocky
+        with open('jabberwocky.txt', 'r+') as f:
+            self.strings = list(set(re.split(r'[^a-z]', f.read().lower())))
+
+    def test_set_and_get(self):
+        '''Test setting and getting key/value pairs in a hash table.'''
+        for s in self.strings[1:]:
+            self.table1.set(s, s.upper())
+            self.table2.set(s, s.upper())
+
+        for s in self.strings[1:]:
+            self.assertEqual(self.table1.get(s), s.upper())
+            self.assertEqual(self.table2.get(s), s.upper())
+
+        # test retrieving a non-existent key/value pair
+        with self.assertRaises(KeyError):
+            self.table1.get('Lewis')
+
+        with self.assertRaises(KeyError):
+            self.table2.get('Carroll')
+
+        # test hashing a non-string
+        with self.assertRaises(TypeError):
+            self.table1.hash(31415)
+
+        with self.assertRaises(TypeError):
+            self.table2.hash(92653)
 
 
 if __name__ == '__main__':

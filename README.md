@@ -5,11 +5,11 @@
 - Queue (*something British*)
 - Stack (*something having to do with pancakes*)
 - Binary heap
+- Hash table
 - Graph 
   - **todo**: implement traversal and weighted edges
 - Binary search tree<sup>1</sup> 
   - **todo**: implement self-balancing
-- ~~Hash table~~
 
 ## Algorithms
 - Insertion sort
