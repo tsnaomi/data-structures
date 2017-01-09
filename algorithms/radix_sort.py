@@ -1,6 +1,3 @@
-# coding='utf-8'
-
-
 def radix_sort(L):
     '''Sort list 'L' using Radix Sort.'''
     if L:

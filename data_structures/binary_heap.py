@@ -1,6 +1,3 @@
-# coding='utf-8'
-
-
 class BinaryHeap:
 
     def __init__(self, Min=True, iterable=None):

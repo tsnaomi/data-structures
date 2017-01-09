@@ -1,6 +1,3 @@
-# coding='utf-8'
-
-
 def hoare_quicksort(L, lo=None, hi=None):
     '''Sort list 'L' using Quicksort with Hoare partitioning.'''
     try:

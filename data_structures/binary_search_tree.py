@@ -1,8 +1,3 @@
-# coding='utf-8'
-
-from graphviz import Digraph
-
-
 class BinarySearchTree:
 
     def __init__(self, root=None):

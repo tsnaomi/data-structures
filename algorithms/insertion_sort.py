@@ -1,6 +1,3 @@
-# coding='utf-8'
-
-
 def insertion_sort(L):
     '''Sort list 'L' using Insertion Sort.'''
     for i, val in enumerate(L):

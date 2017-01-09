@@ -1,6 +1,3 @@
-# coding='utf-8'
-
-
 def merge_sort(L):
     '''Sort list 'L' using Merge Sort.'''
     length = len(L)

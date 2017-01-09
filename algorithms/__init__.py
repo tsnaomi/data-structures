@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 __all__ = [
     'insertion_sort',
     'merge_sort',
