@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/tsnaomi/data_structures.png?branch=master)](https://travis-ci.org/tsnaomi/data_structures)
+[![Build Status](https://travis-ci.org/tsnaomi/data-structures.png?branch=master)](https://travis-ci.org/tsnaomi/data-structures)
 
 ## Data Structures
 - Doubly-linked list
