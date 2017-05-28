@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/tsnaomi/data-structures.png?branch=master)](https://travis-ci.org/tsnaomi/data-structures)
 
-## Data Structures
+# Data Structures
 - [Doubly-linked list](#doubly-linked-list)
 - [Queue](#queue) (*something British*)
 - [Stack](#stack) (*something having to do with pancakes*)
@@ -9,7 +9,7 @@
 - [Graph](#graph) (**todo**: implement traversal and weighted edges)
 - [Binary search tree](#binary-search-tree)<sup>1</sup> (**todo**: implement self-balancing)
 
-## Algorithms
+# Algorithms
 - [Insertion sort](#insertion-sort)
 - [Merge sort](#merge-sort)
 - [Quicksort](#quicksort)
@@ -21,7 +21,7 @@
 
 --------
 
-### Doubly-linked list
+## Doubly-linked list
 
 <!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae nulla nec lorem ultrices bibendum sit amet sed metus. Aenean at sapien vulputate, ultricies sapien at, dictum nisi. Mauris laoreet nunc a magna elementum, nec laoreet libero lacinia. Phasellus iaculis nulla cursus egestas fermentum. Sed rhoncus fermentum erat et finibus. Sed sagittis nisl at erat suscipit consectetur. Proin sit amet purus nulla. Pellentesque consequat, ipsum sit amet posuere ultrices, odio mi ultricies est, quis lacinia mauris neque ut velit. -->
 
@@ -30,53 +30,53 @@
 |**Average**/**Worst**|O(1)|O(1)|O(*n*)|
   
   
-### Queue
+## Queue
 
 ||Insert|Delete|Search|
 |---|---|---|---|
 |**Average**/**Worst**|O(1)|O(1)|O(*n*)|
   
   
-### Stack
+## Stack
 
 ||Insert|Delete|Search|
 |---|---|---|---|
 |**Average**/**Worst**|O(1)|O(1)|O(*n*)|
 
-### Binary heap
+## Binary heap
 
-### Hash table
+## Hash table
 
 ||Insert|Delete|Search|
 |---|---|---|---|
 |**Average**|O(1)|O(1)|O(1)|
 |**Worst**|O(*n*)|O(*n*)|O(*n*)|
 
-### Graph
+## Graph
 
-### Binary search tree
+## Binary search tree
 
 ||Insert|Delete|Search|
 |---|---|---|---|
 |**Average**|O(log *n*)|O(log *n*)|O(log *n*)|
 |**Worst**|O(*n*)|O(*n*)|O(*n*)|
 
-### Insertion sort
+## Insertion sort
 
 |Best|Average|Worst|
 |---|---|---|
 |O(*n*)|O(*n*^2)|O(*n*^2)|
 
-### Merge sort
+## Merge sort
 
 |Best|Average|Worst|
 |---|---|---|
 |O(*n* log *n*)|O(*n* log *n*)|O(*n* log *n*)|
 
-### Quicksort
+## Quicksort
 
 |Best|Average|Worst|
 |---|---|---|
 |O(*n* log *n*)|O(*n* log *n*)|O(*n*^2)|
 
-### Radix sort
+## Radix sort
