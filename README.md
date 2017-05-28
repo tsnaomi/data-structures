@@ -21,8 +21,6 @@
 
 --------
 
-## Details
-
 #### Doubly-linked list
 
 #### Queue
