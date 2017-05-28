@@ -65,7 +65,7 @@
 
 |Best|Average|Worst|
 |---|---|---|
-|O(*n*)|O(*n*^2)|O(*n*^2)|
+|O(*n*)|O(*n*<sup>2</sup>)|O(*n*<sup>2</sup>)|
 
 ## Merge sort
 
@@ -77,6 +77,6 @@
 
 |Best|Average|Worst|
 |---|---|---|
-|O(*n* log *n*)|O(*n* log *n*)|O(*n*^2)|
+|O(*n* log *n*)|O(*n* log *n*)|O(*n*<sup>2</sup>)|
 
 ## Radix sort
