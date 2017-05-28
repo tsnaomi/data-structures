@@ -6,10 +6,8 @@
 - [Stack](#stack) (*something having to do with pancakes*)
 - [Binary heap](#binary-heap)
 - [Hash table](#hash-table)
-- [Graph](#graph) 
-    - **todo**: implement traversal and weighted edges
-- [Binary search tree](#binary-search-tree)<sup>1</sup>
-    - **todo**: implement self-balancing
+- [Graph](#graph) (**todo**: implement traversal and weighted edges)
+- [Binary search tree](#binary-search-tree)<sup>1</sup> (**todo**: implement self-balancing)
 
 ## Algorithms
 - [Insertion sort](#insertion-sort)
@@ -23,24 +21,62 @@
 
 --------
 
-#### Doubly-linked list
+### Doubly-linked list
 
-#### Queue
+<!-- Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vitae nulla nec lorem ultrices bibendum sit amet sed metus. Aenean at sapien vulputate, ultricies sapien at, dictum nisi. Mauris laoreet nunc a magna elementum, nec laoreet libero lacinia. Phasellus iaculis nulla cursus egestas fermentum. Sed rhoncus fermentum erat et finibus. Sed sagittis nisl at erat suscipit consectetur. Proin sit amet purus nulla. Pellentesque consequat, ipsum sit amet posuere ultrices, odio mi ultricies est, quis lacinia mauris neque ut velit. -->
 
-#### Stack
+||Insert|Delete|Search|
+|---|---|---|---|
+|**Average**/**Worst**|O(1)|O(1)|O(*n*)|
+  
+  
+### Queue
 
-#### Binary heap
+||Insert|Delete|Search|
+|---|---|---|---|
+|**Average**/**Worst**|O(1)|O(1)|O(*n*)|
+  
+  
+### Stack
 
-#### Hash table
+||Insert|Delete|Search|
+|---|---|---|---|
+|**Average**/**Worst**|O(1)|O(1)|O(*n*)|
 
-#### Graph
+### Binary heap
 
-#### Binary search tree
+### Hash table
 
-#### Insertion sort
+||Insert|Delete|Search|
+|---|---|---|---|
+|**Average**|O(1)|O(1)|O(1)|
+|**Worst**|O(*n*)|O(*n*)|O(*n*)|
 
-#### Merge sort
+### Graph
 
-#### Quicksort
+### Binary search tree
 
-#### Radix sort
+||Insert|Delete|Search|
+|---|---|---|---|
+|**Average**|O(log *n*)|O(log *n*)|O(log *n*)|
+|**Worst**|O(*n*)|O(*n*)|O(*n*)|
+
+### Insertion sort
+
+|Best|Average|Worst|
+|---|---|---|
+|O(*n*)|O(*n*^2)|O(*n*^2)|
+
+### Merge sort
+
+|Best|Average|Worst|
+|---|---|---|
+|O(*n* log *n*)|O(*n* log *n*)|O(*n* log *n*)|
+
+### Quicksort
+
+|Best|Average|Worst|
+|---|---|---|
+|O(*n* log *n*)|O(*n* log *n*)|O(*n*^2)|
+
+### Radix sort
