@@ -1,12 +1,4 @@
-class Node:
-
-    def __init__(self, val, post=None):
-        self.val = val
-        self.post = post
-
-    def __repr__(self):
-        '''Return the node as a string literal.'''
-        return str(self.val)
+from node import Node
 
 
 # FIFO: First in, First out
