@@ -6,8 +6,10 @@
 - [Stack](#stack) (*something having to do with pancakes*)
 - [Binary heap](#binary-heap)
 - [Hash table](#hash-table)
-- [Graph](#graph) (**todo**: implement traversal and weighted edges)
-- [Binary search tree](#binary-search-tree)<sup>1</sup> (**todo**: implement self-balancing)
+- [Graph](#graph) 
+    - **todo**: implement traversal and weighted edges
+- [Binary search tree](#binary-search-tree)<sup>1</sup>
+    - **todo**: implement self-balancing
 
 ## Algorithms
 - [Insertion sort](#insertion-sort)
