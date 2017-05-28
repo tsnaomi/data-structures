@@ -1,6 +1,6 @@
 class BinaryHeap:
 
-    def __init__(self, Min=True, iterable=None):
+    def __init__(self, Min=True, iterable=[]):
         self.Heap = []
         self._cmp = (lambda p, c: p >= c) if Min else (lambda p, c: p <= c)
 
@@ -8,7 +8,12 @@ class BinaryHeap:
             self.push(i)
 
     def __repr__(self):
+        '''Return the heap as a string literal.'''
         return str(self.Heap)
+
+    def __len__(self):
+        '''Return the size of the queue.'''
+        return len(self.Heap)  # since len() is already O(1)
 
     def _parent(self, index):
         '''Get the parent index of the item at 'index'.'''
@@ -92,3 +97,15 @@ class BinaryHeap:
 
         except IndexError:
             raise ValueError('Can\'t pop an empty heap!')
+
+    def peek(self):
+        '''Return the top item in the heap w/o modifying the heap.'''
+        try:
+            return self.Heap[0]
+
+        except IndexError:
+            raise ValueError('This heap be empty!')
+
+    def size(self):
+        '''Return the size of the heap.'''
+        return len(self)

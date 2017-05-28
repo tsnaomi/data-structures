@@ -295,9 +295,27 @@ class TestBinaryHeap(unittest.TestCase):
     def setUp(self):
         # min heap
         self.minHeap = BinaryHeap(Min=True, iterable=[0, 2, 4, 6, 8])
+        self.emptyMinHeap = BinaryHeap(Min=True)
 
         # max heap
         self.maxHeap = BinaryHeap(Min=False, iterable=[0, 2, 4, 6, 8])
+        self.emptyMaxHeap = BinaryHeap(Min=False)
+
+    def test_len_size(self):
+        '''Test returning the size of the heap.'''
+        # min heap
+        self.assertEqual(len(self.minHeap), 5)
+        self.assertEqual(self.minHeap.size(), 5)
+        self.minHeap.pop()
+        self.assertEqual(len(self.minHeap), 4)
+        self.assertEqual(self.minHeap.size(), 4)
+
+        # max heap
+        self.assertEqual(len(self.maxHeap), 5)
+        self.assertEqual(self.maxHeap.size(), 5)
+        self.maxHeap.pop()
+        self.assertEqual(len(self.maxHeap), 4)
+        self.assertEqual(self.maxHeap.size(), 4)
 
     def test_push(self):
         '''Test pushing items into a binary heap.'''
@@ -351,6 +369,20 @@ class TestBinaryHeap(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             self.minHeap.pop()
+
+    def test_peek(self):
+        '''Test peeking at the heap's topmost item w/o modifying the heap.'''
+        # min heap
+        self.assertEqual(self.minHeap.peek(), 0)
+
+        with self.assertRaises(ValueError):
+            self.emptyMinHeap.peek()
+
+        # max heap
+        self.assertEqual(self.maxHeap.peek(), 8)
+
+        with self.assertRaises(ValueError):
+            self.emptyMaxHeap.peek()
 
 
 class TestGraph(unittest.TestCase):
