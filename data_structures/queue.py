@@ -5,6 +5,7 @@ class Node:
         self.post = post
 
     def __repr__(self):
+        '''Return the node as a string literal.'''
         return str(self.val)
 
 
@@ -13,20 +14,23 @@ class Queue:
 
     def __init__(self):
         self.Queue = None
+        self.length = 0
 
     def __repr__(self):
-        return str(self.tup())
+        '''Return the queue as a string literal.'''
+        return str(tuple(self))
 
-    def tup(self):
-        '''Return the queue as a tuple literal, from first to last.'''
-        nodes = tuple()
+    def __len__(self):
+        '''Return the size of the queue.'''
+        return self.length
+
+    def __iter__(self):
+        '''Return an iterator of the queue's nodes.'''
         node = self.Queue
 
         while node:
-            nodes += (node.val, )
+            yield node.val
             node = node.post
-
-        return nodes
 
     def enqueue(self, val):
         '''Add 'val' to the front of the queue.'''
@@ -43,11 +47,14 @@ class Queue:
         else:
             self.Queue = Node(val)
 
+        self.length += 1
+
     def dequeue(self):
         '''Remove and return the first item in the queue.'''
         try:
             val = self.Queue.val
             self.Queue = self.Queue.post
+            self.length -= 1
 
             return val
 
@@ -64,11 +71,4 @@ class Queue:
 
     def size(self):
         '''Return the size of the queue.'''
-        n = 0
-        node = self.Queue
-
-        while node:
-            n += 1
-            node = node.post
-
-        return n
+        return len(self)

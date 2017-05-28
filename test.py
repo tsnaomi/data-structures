@@ -148,48 +148,96 @@ class TestLinkedList(unittest.TestCase):  # doubly-linked list
         for i in range(1, 5):
             self.List.append(i)
 
-    def test_tup(self):
-        '''Test returning the linked list as a tuple literal.'''
-        self.assertEqual(self.emptyList.tup(), ())
+    def test_repr(self):
+        '''Test returning the linked list as a string literal.'''
+        self.assertEqual(repr(self.emptyList), str(()))
         tup = (1, 3.14, 'foo', True)
 
         for i in tup:
             self.emptyList.append(i)
 
-        self.assertEqual(self.emptyList.tup(), tup)
+        self.assertEqual(repr(self.emptyList), str(tup))
+
+    def test_len_size(self):
+        '''Test returning the length of the list.'''
+        for i in range(100):
+            self.emptyList.insert(i)
+
+        self.assertEqual(len(self.emptyList), 100)
+        self.assertEqual(self.emptyList.size(), 100)
+
+        self.emptyList.pop()
+        self.assertEqual(len(self.emptyList), 99)
+        self.assertEqual(self.emptyList.size(), 99)
+
+        self.emptyList.shift()
+        self.assertEqual(len(self.emptyList), 98)
+        self.assertEqual(self.emptyList.size(), 98)
+
+        self.emptyList.remove(4)
+        self.assertEqual(len(self.emptyList), 97)
+        self.assertEqual(self.emptyList.size(), 97)
+
+    def test_tuple(self):
+        '''Test returning the linked list as a list literal.'''
+        self.assertEqual(list(self.emptyList), [])
+        li = [1, 3.14, 'foo', True]
+
+        for i in li:
+            self.emptyList.append(i)
+
+        self.assertEqual(list(self.emptyList), li)
+
+    def test_list(self):
+        '''Test returning the linked list as a tuple literal.'''
+        self.assertEqual(tuple(self.emptyList), ())
+        tup = (1, 3.14, 'foo', True)
+
+        for i in tup:
+            self.emptyList.append(i)
+
+        self.assertEqual(tuple(self.emptyList), tup)
+
+    def test_in_contains(self):
+        '''Test returning T/F for whether the list contains certain values.'''
+        self.assertTrue(2 in self.List)
+        self.assertFalse(10 in self.List)
+
+        self.assertTrue(self.List.contains(2))
+        self.assertFalse(self.List.contains(10))
 
     def test_insert(self):
         '''Test inserting values at the head of list the list.'''
         for i in range(1, 5):
             self.emptyList.insert(i)
 
-        self.assertEqual(self.emptyList.tup(), (4, 3, 2, 1))
+        self.assertEqual(tuple(self.emptyList), (4, 3, 2, 1))
 
     def test_append(self):
         '''Test appending values at the end of the list.'''
         self.List.append(True)
-        self.assertEqual(self.List.tup(), (1, 2, 3, 4, True))
+        self.assertEqual(tuple(self.List), (1, 2, 3, 4, True))
 
     def test_pop(self):
         '''Test popping off and returning the head of the list.'''
         self.assertEqual(self.List.pop(), 1)
-        self.assertEqual(self.List.tup(), (2, 3, 4))
+        self.assertEqual(tuple(self.List), (2, 3, 4))
         self.assertEqual(self.List.pop(), 2)
         self.assertEqual(self.List.pop(), 3)
         self.assertEqual(self.List.pop(), 4)
-        self.assertEqual(self.List.tup(), ())
+        self.assertEqual(tuple(self.List), ())
 
         with self.assertRaises(IndexError):
             self.emptyList.pop()
 
     def test_shift(self):
-        '''Test removing and return the tail of the list.'''
+        '''Test removing and returning the tail of the list.'''
         self.assertEqual(self.List.shift(), 4)
-        self.assertEqual(self.List.tup(), (1, 2, 3))
+        self.assertEqual(tuple(self.List), (1, 2, 3))
         self.assertEqual(self.List.shift(), 3)
         self.assertEqual(self.List.shift(), 2)
         self.assertEqual(self.List.shift(), 1)
-        self.assertEqual(self.List.tup(), ())
+        self.assertEqual(tuple(self.List), ())
 
         with self.assertRaises(IndexError):
             self.emptyList.shift()
@@ -200,22 +248,10 @@ class TestLinkedList(unittest.TestCase):  # doubly-linked list
             self.List.append(i)
 
         self.List.remove(2)
-        self.assertEqual(self.List.tup(), (1, 3, 4, 1, 2, 3, 4))
+        self.assertEqual(tuple(self.List), (1, 3, 4, 1, 2, 3, 4))
 
         with self.assertRaises(ValueError):
             self.List.remove(6)
-
-    def test_size(self):
-        '''Test returning the length of the list.'''
-        for i in range(100):
-            self.emptyList.insert(i)
-
-        self.assertEqual(self.emptyList.size(), 100)
-
-    def test_contains(self):
-        '''Test returning T/F for whether the list contains certain values.'''
-        self.assertTrue(self.List.contains(2))
-        self.assertFalse(self.List.contains(10))
 
 
 class TestStack(unittest.TestCase):  # LIFO
@@ -227,30 +263,62 @@ class TestStack(unittest.TestCase):  # LIFO
         for i in range(5):
             self.Stack.push(i)
 
-    def test_tup(self):
-        '''Test returning the stack as a tuple literal.'''
-        self.assertEqual(self.emptyStack.tup(), ())
+    def test_repr(self):
+        '''Test returning the stack as a string literal.'''
+        self.assertEqual(repr(self.emptyStack), str(()))
         tup = (1, 3.14, 'foo', True)
 
         for i in tup:
             self.emptyStack.push(i)
 
-        self.assertEqual(self.emptyStack.tup(), (True, 'foo', 3.14, 1))
+        self.assertEqual(repr(self.emptyStack), str((True, 'foo', 3.14, 1)))
+
+    def test_len_size(self):
+        '''Test returning the size of the stack.'''
+        for i in range(100):
+            self.emptyStack.push(i)
+
+        self.assertEqual(len(self.emptyStack), 100)
+        self.assertEqual(self.emptyStack.size(), 100)
+
+        self.emptyStack.pop()
+        self.assertEqual(len(self.emptyStack), 99)
+        self.assertEqual(self.emptyStack.size(), 99)
+
+    def test_tuple(self):
+        '''Test returning the stack as a tuple literal.'''
+        self.assertEqual(tuple(self.emptyStack), ())
+        tup = (1, 3.14, 'foo', True)
+
+        for i in tup:
+            self.emptyStack.push(i)
+
+        self.assertEqual(tuple(self.emptyStack), (True, 'foo', 3.14, 1))
+
+    def test_list(self):
+        '''Test returning the stack as a list literal.'''
+        self.assertEqual(list(self.emptyStack), [])
+        li = [1, 3.14, 'foo', True]
+
+        for i in li:
+            self.emptyStack.push(i)
+
+        self.assertEqual(list(self.emptyStack), [True, 'foo', 3.14, 1])
 
     def test_push(self):
         '''Test pushing items on top of the stack.'''
         self.Stack.push(True)
-        self.assertEqual(self.Stack.tup(), (True, 4, 3, 2, 1, 0))
+        self.assertEqual(tuple(self.Stack), (True, 4, 3, 2, 1, 0))
 
     def test_pop(self):
         '''Test popping off and returning the top of the stack.'''
         self.assertEqual(self.Stack.pop(), 4)
-        self.assertEqual(self.Stack.tup(), (3, 2, 1, 0))
+        self.assertEqual(tuple(self.Stack), (3, 2, 1, 0))
         self.assertEqual(self.Stack.pop(), 3)
         self.assertEqual(self.Stack.pop(), 2)
         self.assertEqual(self.Stack.pop(), 1)
         self.assertEqual(self.Stack.pop(), 0)
-        self.assertEqual(self.Stack.tup(), ())
+        self.assertEqual(tuple(self.Stack), ())
 
         with self.assertRaises(ValueError):
             self.Stack.pop()
@@ -262,13 +330,6 @@ class TestStack(unittest.TestCase):  # LIFO
         with self.assertRaises(ValueError):
             self.emptyStack.peek()
 
-    def test_size(self):
-        '''Test returning the size of the stack.'''
-        for i in range(100):
-            self.emptyStack.push(i)
-
-        self.assertEqual(self.emptyStack.size(), 100)
-
 
 class TestQueue(unittest.TestCase):  # FIFO
 
@@ -279,30 +340,62 @@ class TestQueue(unittest.TestCase):  # FIFO
         for i in range(5):
             self.Queue.enqueue(i)
 
-    def test_tup(self):
-        '''Test returning the queue as a tuple literal.'''
-        self.assertEqual(self.emptyQueue.tup(), ())
+    def test_repr(self):
+        '''Test returning the queue as a string literal.'''
+        self.assertEqual(repr(self.emptyQueue), str(()))
         tup = (1, 3.14, 'foo', True)
 
         for i in tup:
             self.emptyQueue.enqueue(i)
 
-        self.assertEqual(self.emptyQueue.tup(), tup)
+        self.assertEqual(repr(self.emptyQueue), str(tup))
+
+    def test_len_size(self):
+        '''Test returning the size of the queue.'''
+        for i in range(100):
+            self.emptyQueue.enqueue(i)
+
+        self.assertEqual(len(self.emptyQueue), 100)
+        self.assertEqual(self.emptyQueue.size(), 100)
+
+        self.emptyQueue.dequeue()
+        self.assertEqual(len(self.emptyQueue), 99)
+        self.assertEqual(self.emptyQueue.size(), 99)
+
+    def test_tuple(self):
+        '''Test returning the queue as a tuple literal.'''
+        self.assertEqual(tuple(self.emptyQueue), ())
+        tup = (1, 3.14, 'foo', True)
+
+        for i in tup:
+            self.emptyQueue.enqueue(i)
+
+        self.assertEqual(tuple(self.emptyQueue), tup)
+
+    def test_list(self):
+        '''Test returning the queue as a list literal.'''
+        self.assertEqual(list(self.emptyQueue), [])
+        li = [1, 3.14, 'foo', True]
+
+        for i in li:
+            self.emptyQueue.enqueue(i)
+
+        self.assertEqual(list(self.emptyQueue), li)
 
     def test_enqueue(self):
         '''Test adding items to the front of the queue.'''
         self.Queue.enqueue(True)
-        self.assertEqual(self.Queue.tup(), (0, 1, 2, 3, 4, True))
+        self.assertEqual(tuple(self.Queue), (0, 1, 2, 3, 4, True))
 
     def test_dequeue(self):
         '''Test removing items from the front of the queue.'''
         self.assertEqual(self.Queue.dequeue(), 0)
-        self.assertEqual(self.Queue.tup(), (1, 2, 3, 4))
+        self.assertEqual(tuple(self.Queue), (1, 2, 3, 4))
         self.assertEqual(self.Queue.dequeue(), 1)
         self.assertEqual(self.Queue.dequeue(), 2)
         self.assertEqual(self.Queue.dequeue(), 3)
         self.assertEqual(self.Queue.dequeue(), 4)
-        self.assertEqual(self.Queue.tup(), ())
+        self.assertEqual(tuple(self.Queue), ())
 
         with self.assertRaises(ValueError):
             self.Queue.dequeue()
@@ -313,13 +406,6 @@ class TestQueue(unittest.TestCase):  # FIFO
 
         with self.assertRaises(ValueError):
             self.emptyQueue.peek()
-
-    def test_size(self):
-        '''Test returning the size of the queue.'''
-        for i in range(100):
-            self.emptyQueue.enqueue(i)
-
-        self.assertEqual(self.emptyQueue.size(), 100)
 
 
 class TestBinaryHeap(unittest.TestCase):

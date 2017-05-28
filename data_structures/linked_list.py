@@ -6,6 +6,7 @@ class Node:
         self.post = post
 
     def __repr__(self):
+        '''Return the node as a string literal.'''
         return str(self.val)
 
 
@@ -14,20 +15,43 @@ class LinkedList:
 
     def __init__(self):
         self.List = None
+        self.length = 0
 
     def __repr__(self):
-        return str(self.tup())
+        '''Return the list as a string literal.'''
+        return str(tuple(self))
 
-    def tup(self):
-        '''Return the linked list as a tuple literal.'''
-        nodes = tuple()
+    def __len__(self):
+        '''Return the length of the list.'''
+        return self.length
+
+    def __iter__(self):
+        '''Return an iterator of the list's nodes.'''
         node = self.List
 
         while node:
-            nodes += (node.val, )
+            yield node.val
             node = node.post
 
-        return nodes
+    def __contains__(self, val):
+        '''Return True if the list contains 'val'; otherwise, False.'''
+        node = self.List
+
+        while node:
+            if node.val == val:
+                return True
+
+            node = node.post
+
+        return False
+
+    def size(self):
+        '''Return the length of the list.'''
+        return len(self)
+
+    def contains(self, val):
+        '''Return True if the list contains 'val'; otherwise, False.'''
+        return val in self
 
     def insert(self, val):
         '''Insert 'val' at the head of the list.'''
@@ -39,6 +63,8 @@ class LinkedList:
 
         except AttributeError:
             self.List = Node(val)
+
+        self.length += 1
 
     def append(self, val):
         '''Append 'val' at the end of the list.'''
@@ -57,11 +83,14 @@ class LinkedList:
         else:
             self.List = Node(val)
 
+        self.length += 1
+
     def pop(self):
         '''Pop off and return the value at the head of the list.'''
         try:
             val = self.List.val
             self.List = self.List.post
+            self.length -= 1
 
             return val
 
@@ -83,6 +112,8 @@ class LinkedList:
                 except AttributeError:
                     self.List = None
 
+                self.length -= 1
+
                 return node.val
 
         raise IndexError('Empty lists can\'t shift. Darn.')
@@ -95,32 +126,10 @@ class LinkedList:
             if node.val == val:
                 node.post.prev = node.prev
                 node.prev.post = node.post
+                self.length -= 1
                 break
 
             node = node.post
 
         else:
             raise ValueError('Can\'t delete something that ain\'t there.')
-
-    def size(self):
-        '''Return the length of the list.'''
-        n = 0
-        node = self.List
-
-        while node:
-            n += 1
-            node = node.post
-
-        return n
-
-    def contains(self, val):
-        '''Return True if the list contains 'val'; otherwise, False.'''
-        node = self.List
-
-        while node:
-            if node.val == val:
-                return True
-
-            node = node.post
-
-        return False

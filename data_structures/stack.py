@@ -5,6 +5,7 @@ class Node:
         self.post = post
 
     def __repr__(self):
+        '''Return the node as a string literal.'''
         return str(self.val)
 
 
@@ -13,30 +14,35 @@ class Stack:
 
     def __init__(self):
         self.Stack = None
+        self.length = 0
 
     def __repr__(self):
-        return str(self.tup())
+        '''Return the stack as a string literal.'''
+        return str(tuple(self))
 
-    def tup(self):
-        '''Return the stack as a tuple literal, from top to bottom.'''
-        nodes = tuple()
+    def __len__(self):
+        '''Return the size of the stack.'''
+        return self.length
+
+    def __iter__(self):
+        '''Return an iterator of the stack's nodes.'''
         node = self.Stack
 
         while node:
-            nodes += (node.val, )
+            yield node.val
             node = node.post
-
-        return nodes
 
     def push(self, val):
         '''Add 'val' to the top of the stack.'''
         self.Stack = Node(val, post=self.Stack)
+        self.length += 1
 
     def pop(self):
         '''Pop off and return the top item of the stack.'''
         try:
             val = self.Stack.val
             self.Stack = self.Stack.post
+            self.length -= 1
 
             return val
 
@@ -53,11 +59,4 @@ class Stack:
 
     def size(self):
         '''Return the size of the stack.'''
-        n = 0
-        node = self.Stack
-
-        while node:
-            n += 1
-            node = node.post
-
-        return n
+        return len(self)
