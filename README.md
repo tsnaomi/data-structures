@@ -186,9 +186,14 @@ Don't trust anything I say.
  <!--
  ||insert|contains|delete|size|depth|get_balance|in/pre/post_order|breadth_first|
  |---|---|---|---|---|---|---|---|---|
- |**Average**|   |   |   |   |   |   |   |   |
- |**Worst**|   |   |   |   |   |   |   |   |
+ |**Average**|O(log *n*)|O(log *n*)|O(log *n*)|   |   |   |   |   |
+ |**Worst**|O(*n*)|O(*n*)|O(*n*)|   |   |   |   |   |
  -->
+ ||insert|contains|delete|
+ |---|---|---|---|
+ |**Average**|O(log *n*)|O(log *n*)|O(log *n*)|
+ |**Worst**|O(*n*)|O(*n*)|O(*n*)|
+
 
  ([back to top](#data-structures))
 
