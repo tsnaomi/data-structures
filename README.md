@@ -77,7 +77,6 @@ Don't trust anything I say.
 
 ### Binary heap
 
- <!-- A [*binary heap*](https://en.wikipedia.org/wiki/Binary_heap)... -->
  *[Binary heap](https://en.wikipedia.org/wiki/Binary_heap) description coming soon!*
  
  This repo's implementation of a binary heap includes the following methods:  
@@ -164,10 +163,16 @@ Don't trust anything I say.
 
 ### Binary search tree
 
-<!-- ||Insert|Delete|Search|
-|---|---|---|---|
-|**Average**|O(log *n*)|O(log *n*)|O(log *n*)|
-|**Worst**|O(*n*)|O(*n*)|O(*n*)| -->
+ Once again:
+ 
+ ![my feelings](http://tsnaomi.net/images/bst.png)
+
+ <!-- ||Insert|Delete|Search|
+ |---|---|---|---|
+ |**Average**|O(log *n*)|O(log *n*)|O(log *n*)|
+ |**Worst**|O(*n*)|O(*n*)|O(*n*)| -->
+
+ ([back to top](#data-structures))
 
 --------
 
