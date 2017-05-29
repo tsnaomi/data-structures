@@ -32,18 +32,15 @@ class Graph:
     def del_node(self, n):
         '''Delete node 'n' from the graph.'''
         try:
-            del self.Nodes[n]
             edges = []
+            keys = self.Nodes[n]
 
-            for k in self.Nodes.iterkeys():
-                try:
-                    self.Nodes[k].remove(n)
-                    edges.append(set((n, k)))
+            del self.Nodes[n]
 
-                except KeyError:
-                    continue
+            for k in keys:
+                self.Nodes[k].remove(n)
+                edges.append(set((n, k)))
 
-            # self.Edges.difference(edges)
             self.Edges = [e for e in self.Edges if e not in edges]
 
         except KeyError:
