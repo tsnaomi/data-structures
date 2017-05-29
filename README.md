@@ -40,25 +40,8 @@ Don't trust anything I say.
 
  ||insert|append|shift|pop|remove|size|contains|
  |---|---|---|---|---|---|---|---|
- |**Average**/**Worst**||||||||
- 
-
-<!--
-space... O(N)
-size... O(1)
-contains... O(N) / search
-insert... O(1) 
-append... O(N)
-pop... O(1)
-shift... O(N)
-remove... O(N)
--->
-
-<!-- ||Insert|Delete|Search|
-|---|---|---|---|
-|**Average**/**Worst**|O(1)|O(1)|O(*n*)| -->
-  
-  
+ |**Average**/**Worst**|O(1)|O(1)|O(1)|O(1)|O(*n*)|O(*n*)|O(*n*)|
+   
 ### Queue
 
 <!--
