@@ -161,7 +161,7 @@ neighbors... O(1) ? (assumes dict lookup is O(1))
 
 ### Quicksort
 
- [*Quicksort*](https://en.wikipedia.org/wiki/Quicksort) is another divide-and-conquer sorting algorithm. It picks a value, called a *pivot*, then *partitions* the input list into two sub-lists: a list containing values less than (or equal) to the pivot and a list containing values greater than the pivot. It then recursively sorts each sub-list accordingly. (This repo implements both the [*Lomuto*](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme) and [*Hoare*](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme) partitioning schemes.)
+ [*Quicksort*](https://en.wikipedia.org/wiki/Quicksort) is another divide-and-conquer sorting algorithm. It picks a value, called a *pivot*, then *partitions* the input list into two sub-lists: a list containing values less than (or equal) to the pivot and a list containing values greater than the pivot. It then recursively sorts each sub-list accordingly. This repo implements both the [*Lomuto*](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme) and [*Hoare*](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme) partitioning schemes.
 
  The *best* case for quicksort is a balanced input, where each partitioning results in two approximately equally-sized sub-lists. With such an input, quicksort takes **O(*n* log *n*)** time.
 
@@ -176,3 +176,7 @@ neighbors... O(1) ? (assumes dict lookup is O(1))
  ([back to top](#data-structures))
 
 ### Radix sort
+
+ *Coming (not so) soon!*
+
+ ([back to top](#data-structures))
