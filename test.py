@@ -136,83 +136,6 @@ class TestLinkedList(unittest.TestCase):  # doubly-linked list
             self.List.remove(6)
 
 
-class TestStack(unittest.TestCase):  # LIFO
-
-    def setUp(self):
-        self.emptyStack = Stack()
-        self.Stack = Stack()
-
-        for i in range(5):
-            self.Stack.push(i)
-
-    def test_repr(self):
-        '''Test returning the stack as a string literal.'''
-        self.assertEqual(repr(self.emptyStack), str(()))
-        tup = (1, 3.14, 'foo', True)
-
-        for i in tup:
-            self.emptyStack.push(i)
-
-        self.assertEqual(repr(self.emptyStack), str((True, 'foo', 3.14, 1)))
-
-    def test_len_size(self):
-        '''Test returning the size of the stack.'''
-        for i in range(100):
-            self.emptyStack.push(i)
-
-        self.assertEqual(len(self.emptyStack), 100)
-        self.assertEqual(self.emptyStack.size(), 100)
-
-        self.emptyStack.pop()
-        self.assertEqual(len(self.emptyStack), 99)
-        self.assertEqual(self.emptyStack.size(), 99)
-
-    def test_tuple(self):
-        '''Test returning the stack as a tuple literal.'''
-        self.assertEqual(tuple(self.emptyStack), ())
-        tup = (1, 3.14, 'foo', True)
-
-        for i in tup:
-            self.emptyStack.push(i)
-
-        self.assertEqual(tuple(self.emptyStack), (True, 'foo', 3.14, 1))
-
-    def test_list(self):
-        '''Test returning the stack as a list literal.'''
-        self.assertEqual(list(self.emptyStack), [])
-        li = [1, 3.14, 'foo', True]
-
-        for i in li:
-            self.emptyStack.push(i)
-
-        self.assertEqual(list(self.emptyStack), [True, 'foo', 3.14, 1])
-
-    def test_push(self):
-        '''Test pushing items on top of the stack.'''
-        self.Stack.push(True)
-        self.assertEqual(tuple(self.Stack), (True, 4, 3, 2, 1, 0))
-
-    def test_pop(self):
-        '''Test popping off and returning the top of the stack.'''
-        self.assertEqual(self.Stack.pop(), 4)
-        self.assertEqual(tuple(self.Stack), (3, 2, 1, 0))
-        self.assertEqual(self.Stack.pop(), 3)
-        self.assertEqual(self.Stack.pop(), 2)
-        self.assertEqual(self.Stack.pop(), 1)
-        self.assertEqual(self.Stack.pop(), 0)
-        self.assertEqual(tuple(self.Stack), ())
-
-        with self.assertRaises(ValueError):
-            self.Stack.pop()
-
-    def test_peek(self):
-        '''Test peeking at the top of the stack w/o modifying the stack.'''
-        self.assertEqual(self.Stack.peek(), 4)
-
-        with self.assertRaises(ValueError):
-            self.emptyStack.peek()
-
-
 class TestQueue(unittest.TestCase):  # FIFO
 
     def setUp(self):
@@ -288,6 +211,83 @@ class TestQueue(unittest.TestCase):  # FIFO
 
         with self.assertRaises(ValueError):
             self.emptyQueue.peek()
+
+
+class TestStack(unittest.TestCase):  # LIFO
+
+    def setUp(self):
+        self.emptyStack = Stack()
+        self.Stack = Stack()
+
+        for i in range(5):
+            self.Stack.push(i)
+
+    def test_repr(self):
+        '''Test returning the stack as a string literal.'''
+        self.assertEqual(repr(self.emptyStack), str(()))
+        tup = (1, 3.14, 'foo', True)
+
+        for i in tup:
+            self.emptyStack.push(i)
+
+        self.assertEqual(repr(self.emptyStack), str((True, 'foo', 3.14, 1)))
+
+    def test_len_size(self):
+        '''Test returning the size of the stack.'''
+        for i in range(100):
+            self.emptyStack.push(i)
+
+        self.assertEqual(len(self.emptyStack), 100)
+        self.assertEqual(self.emptyStack.size(), 100)
+
+        self.emptyStack.pop()
+        self.assertEqual(len(self.emptyStack), 99)
+        self.assertEqual(self.emptyStack.size(), 99)
+
+    def test_tuple(self):
+        '''Test returning the stack as a tuple literal.'''
+        self.assertEqual(tuple(self.emptyStack), ())
+        tup = (1, 3.14, 'foo', True)
+
+        for i in tup:
+            self.emptyStack.push(i)
+
+        self.assertEqual(tuple(self.emptyStack), (True, 'foo', 3.14, 1))
+
+    def test_list(self):
+        '''Test returning the stack as a list literal.'''
+        self.assertEqual(list(self.emptyStack), [])
+        li = [1, 3.14, 'foo', True]
+
+        for i in li:
+            self.emptyStack.push(i)
+
+        self.assertEqual(list(self.emptyStack), [True, 'foo', 3.14, 1])
+
+    def test_push(self):
+        '''Test pushing items on top of the stack.'''
+        self.Stack.push(True)
+        self.assertEqual(tuple(self.Stack), (True, 4, 3, 2, 1, 0))
+
+    def test_pop(self):
+        '''Test popping off and returning the top of the stack.'''
+        self.assertEqual(self.Stack.pop(), 4)
+        self.assertEqual(tuple(self.Stack), (3, 2, 1, 0))
+        self.assertEqual(self.Stack.pop(), 3)
+        self.assertEqual(self.Stack.pop(), 2)
+        self.assertEqual(self.Stack.pop(), 1)
+        self.assertEqual(self.Stack.pop(), 0)
+        self.assertEqual(tuple(self.Stack), ())
+
+        with self.assertRaises(ValueError):
+            self.Stack.pop()
+
+    def test_peek(self):
+        '''Test peeking at the top of the stack w/o modifying the stack.'''
+        self.assertEqual(self.Stack.peek(), 4)
+
+        with self.assertRaises(ValueError):
+            self.emptyStack.peek()
 
 
 class TestBinaryHeap(unittest.TestCase):
@@ -383,6 +383,41 @@ class TestBinaryHeap(unittest.TestCase):
 
         with self.assertRaises(ValueError):
             self.emptyMaxHeap.peek()
+
+
+class TestHashTable(unittest.TestCase):
+
+    def setUp(self):
+        self.table1 = HashTable()
+        self.table2 = HashTable(100)
+
+        # extract unique words from Jabberwocky
+        with open('texts/jabberwocky.txt', 'r+') as f:
+            self.strings = list(set(re.split(r'[^a-z]', f.read().lower())))
+
+    def test_set_and_get(self):
+        '''Test setting and getting key/value pairs in a hash table.'''
+        for s in self.strings[1:]:
+            self.table1.set(s, s.upper())
+            self.table2.set(s, s.upper())
+
+        for s in self.strings[1:]:
+            self.assertEqual(self.table1.get(s), s.upper())
+            self.assertEqual(self.table2.get(s), s.upper())
+
+        # test retrieving a non-existent key/value pair
+        with self.assertRaises(KeyError):
+            self.table1.get('Lewis')
+
+        with self.assertRaises(KeyError):
+            self.table2.get('Carroll')
+
+        # test hashing a non-string
+        with self.assertRaises(TypeError):
+            self.table1.hash(31415)
+
+        with self.assertRaises(TypeError):
+            self.table2.hash(92653)
 
 
 class TestGraph(unittest.TestCase):
@@ -716,41 +751,6 @@ class TestBinarySearchTree(unittest.TestCase):
         # deleting from an empty tree
         self.emptyTree.delete(4)
         self.assertEqual(list(self.emptyTree.breadth_first()), [])
-
-
-class TestHashTable(unittest.TestCase):
-
-    def setUp(self):
-        self.table1 = HashTable()
-        self.table2 = HashTable(100)
-
-        # extract unique words from Jabberwocky
-        with open('texts/jabberwocky.txt', 'r+') as f:
-            self.strings = list(set(re.split(r'[^a-z]', f.read().lower())))
-
-    def test_set_and_get(self):
-        '''Test setting and getting key/value pairs in a hash table.'''
-        for s in self.strings[1:]:
-            self.table1.set(s, s.upper())
-            self.table2.set(s, s.upper())
-
-        for s in self.strings[1:]:
-            self.assertEqual(self.table1.get(s), s.upper())
-            self.assertEqual(self.table2.get(s), s.upper())
-
-        # test retrieving a non-existent key/value pair
-        with self.assertRaises(KeyError):
-            self.table1.get('Lewis')
-
-        with self.assertRaises(KeyError):
-            self.table2.get('Carroll')
-
-        # test hashing a non-string
-        with self.assertRaises(TypeError):
-            self.table1.hash(31415)
-
-        with self.assertRaises(TypeError):
-            self.table2.hash(92653)
 
 
 class TestInsertionSort(unittest.TestCase):
