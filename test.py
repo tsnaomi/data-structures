@@ -124,6 +124,23 @@ class TestLinkedList(unittest.TestCase):  # doubly-linked list
         with self.assertRaises(IndexError):
             self.emptyList.pop()
 
+    def test_shift_and_post(self):
+        '''Testing shifting and popping interchaneably.'''
+        self.assertEqual(self.List.pop(), 4)
+        self.assertEqual(tuple(self.List), (1, 2, 3))
+        self.assertEqual(self.List.shift(), 1)
+        self.assertEqual(tuple(self.List), (2, 3))
+        self.assertEqual(self.List.pop(), 3)
+        self.assertEqual(tuple(self.List), (2, ))
+        self.assertEqual(self.List.shift(), 2)
+        self.assertEqual(tuple(self.List), ())
+
+        with self.assertRaises(IndexError):
+            self.emptyList.pop()
+
+        with self.assertRaises(IndexError):
+            self.emptyList.shift()
+
     def test_remove(self):
         '''Testing finding and removing values from the list.'''
         for i in range(1, 5):
@@ -204,6 +221,11 @@ class TestQueue(unittest.TestCase):  # FIFO
 
         with self.assertRaises(ValueError):
             self.Queue.dequeue()
+
+        # test enqueuing after dequeuing
+        self.Queue.enqueue(0)
+        self.Queue.enqueue(True)
+        self.assertEqual(tuple(self.Queue), (0, True))
 
     def test_peek(self):
         '''Test peeking at the first enqueued item w/o modifying the queue.'''

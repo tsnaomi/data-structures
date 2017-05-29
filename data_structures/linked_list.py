@@ -6,6 +6,7 @@ class LinkedList:
 
     def __init__(self):
         self.List = None
+        self.end = None
         self.length = 0
 
     def __repr__(self):
@@ -46,33 +47,32 @@ class LinkedList:
 
     def insert(self, val):
         '''Insert 'val' at the head of the list.'''
+        node = Node(val)
+
         try:
-            head = Node(val)
-            self.List.prev = head
-            head.post = self.List
-            self.List = head
+            # head = Node(val)
+            self.List.prev = node
+            node.post = self.List
+            self.List = node
 
         except AttributeError:
-            self.List = Node(val)
+            self.List = node
+            self.end = node
 
         self.length += 1
 
     def append(self, val):
         '''Append 'val' at the end of the list.'''
-        node = self.List
+        node = Node(val)
 
-        while node:
-            if node.post:
-                node = node.post
+        try:
+            node.prev = self.end
+            self.end = node
+            self.end.prev.post = node
 
-            else:
-                tail = Node(val)
-                tail.prev = node
-                node.post = tail
-                break
-
-        else:
-            self.List = Node(val)
+        except AttributeError:
+            self.List = node
+            self.end = node
 
         self.length += 1
 
@@ -83,6 +83,12 @@ class LinkedList:
             self.List = self.List.post
             self.length -= 1
 
+            try:
+                self.List.prev = None
+
+            except AttributeError:
+                self.end = None
+
             return val
 
         except AttributeError:
@@ -90,24 +96,21 @@ class LinkedList:
 
     def pop(self):
         '''Pop off and return the value at the tail of the list.'''
-        node = self.List
+        try:
+            val = self.end.val
+            self.end = self.end.prev
+            self.length -= 1
 
-        while node:
-            if node.post:
-                node = node.post
+            try:
+                self.end.post = None
 
-            else:
-                try:
-                    node.prev.post = None
+            except AttributeError:
+                self.List = None
 
-                except AttributeError:
-                    self.List = None
+            return val
 
-                self.length -= 1
-
-                return node.val
-
-        raise IndexError('Empty lists can\'t pop. Darn.')
+        except AttributeError:
+            raise IndexError('Empty lists can\'t pop. Welp.')
 
     def remove(self, val):
         '''Remove the first instance of 'val' found in the list.'''

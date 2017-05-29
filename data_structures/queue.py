@@ -27,14 +27,14 @@ class Queue:
 
     def enqueue(self, val):
         '''Add 'val' to the queue.'''
+        node = Node(val)
+
         if self.Queue:
-            node = Node(val)
             node.prev = self.end
             self.end = node
-            self.end.prev.post = self.end
+            self.end.prev.post = node
 
         else:
-            node = Node(val)
             self.Queue = node
             self.end = node
 
@@ -44,14 +44,14 @@ class Queue:
         '''Remove and return the first item in the queue.'''
         try:
             val = self.Queue.val
+            self.Queue = self.Queue.post
             self.length -= 1
 
             try:
-                self.Queue = self.Queue.post
                 self.Queue.prev = None
 
             except AttributeError:
-                pass
+                self.end = None
 
             return val
 
