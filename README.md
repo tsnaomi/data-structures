@@ -62,6 +62,19 @@ Don't trust anything I say.
   
 ### Stack
 
+ A [*stack*](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) is a last-in-first-out or *LIFO* data structure, from which the most recently inserted items are removed first. This repo's implementation includes the following methods:
+  - `push(val)` adds *val* to the top of the stack
+  - `pop()` removes and returns the topmost (i.e., most recently added) value in the stack
+  - `peek()` returns the first value in the stack without removing it from the stack
+  - `size()` returns the number of items in the stack
+  
+ <!-- What is the space complexity analysis? O(n) or O(n^2)? -->
+ ||push|pop|peek|size|
+ |---|---|---|---|---|
+ |**Average**/**Worst**|O(1)|O(1)|O(1)|O(1)|
+ 
+ ([back to top](#data-structures))
+
 <!--
 space... O(N)
 push... O(1)
