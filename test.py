@@ -391,7 +391,7 @@ class TestGraph(unittest.TestCase):
         self.graph = Graph()
         self.emptyGraph = Graph()
         self.values = [3, 1, 4, 5, 9, 2, 6, 8, 7, 0]
-        self.pairs = map(set, [(3, 4), (9, 2), (4, 2)])
+        self.pairs = [(3, 4), (2, 9), (2, 4)]
 
         for n in self.values:
             self.graph.add_node(n)
@@ -403,45 +403,73 @@ class TestGraph(unittest.TestCase):
 
     def test_add_node(self):
         '''Test adding nodes to a graph.'''
-        # implicitly test Graph.nodes()
-        self.assertEqual(sorted(self.graph.nodes()), self.values)
+        # implicitly test Graph.nodes() as well
+        self.assertEqual(self.graph.nodes(), self.values)
         self.assertEqual(self.emptyGraph.nodes(), [])
 
         # test adding a duplicate node
         self.graph.add_node(0)
-        self.assertEqual(sorted(self.graph.nodes()), self.values)
+        self.assertEqual(self.graph.nodes(), self.values)
 
     def test_add_edge(self):
-        '''Test adding edges to a graph.'''
-        # implicitly test Graph.edges()
-        self.assertEqual(self.graph.edges(), self.pairs)
-        self.assertEqual(self.emptyGraph.edges(), [])
+        '''Test adding edges to a graph (w/o using has_edge).'''
+        test = set([])  # create a set listing edges as tuples
+
+        for n1, edges in self.graph.Nodes.iteritems():
+            for n2 in edges:
+                pair = (n1, n2)
+                test.add((min(pair), max(pair)))
+
+        # ensure that setUp appropriately added edges
+        self.assertEqual(test, set(self.pairs))
 
         # test adding an existent edge
         self.graph.add_edge(3, 4)
-        self.assertEqual(self.graph.edges(), self.pairs)
+        self.assertTrue(3 in self.graph.Nodes[4])
+        self.assertTrue(4 in self.graph.Nodes[3])
 
         # test adding an edge to a non-existent node
         self.graph.add_edge(3, 10)
-        self.assertEqual(self.graph.edges(), self.pairs + [set((3, 10))])
-        self.assertEqual(sorted(self.graph.nodes()), self.values + [10])
+        self.assertTrue(3 in self.graph.Nodes[10])
+        self.assertTrue(10 in self.graph.Nodes[3])
+        self.assertEqual(self.graph.nodes(), range(11))
 
         # test adding an edge to multiple non-existent nodes
         self.emptyGraph.add_edge(2, 1)
-        self.assertEqual(self.emptyGraph.edges(), [set((2, 1))])
+        # self.assertEqual(self.emptyGraph.edges(), [set((2, 1))])
+        self.assertTrue(2 in self.emptyGraph.Nodes[1])
+        self.assertTrue(1 in self.emptyGraph.Nodes[2])
         self.assertEqual(self.emptyGraph.nodes(), [1, 2])
 
     def test_del_node(self):
         '''Test deleting nodes from a graph.'''
-        expected = sorted([3, 5, 9, 2, 6, 8, 7, 0])
         self.graph.del_node(1)
         self.graph.del_node(4)
-        self.assertEqual(sorted(self.graph.nodes()), expected)
-        self.assertEqual(self.graph.edges(), [set((9, 2))])
+        self.assertEqual(self.graph.nodes(), [0, 2, 3, 5, 6, 7, 8, 9])
+        self.assertFalse(4 in self.graph.Nodes[2])
+        self.assertFalse(4 in self.graph.Nodes[3])
 
         # test deleting fron an empty graph
         with self.assertRaises(ValueError):
             self.emptyGraph.del_node(0)
+
+    def test_del_edge(self):
+        '''Test deleting edges from a graph.'''
+        # test deleting an existent edge
+        self.graph.del_edge(3, 4)
+        self.assertFalse(3 in self.graph.Nodes[4])
+        self.assertFalse(4 in self.graph.Nodes[3])
+
+        # ensure that the nodes remained intact
+        self.assertEqual(self.graph.nodes(), self.values)
+
+        # test deleting a non-existent edge between existent nodes
+        with self.assertRaises(ValueError):
+            self.graph.del_edge(1, 2)
+
+        # test deleting an edge between non-existent nodes
+        with self.assertRaises(ValueError):
+            self.emptyGraph.del_edge(1, 2)
 
     def test_has_node(self):
         '''Test checking whether a graph contains certain nodes.'''
@@ -455,12 +483,9 @@ class TestGraph(unittest.TestCase):
         '''Test listing the neighbors of nodes in a graph.'''
         self.assertEqual(self.graph.neighbors(0), [])
         self.assertEqual(self.graph.neighbors(3), [4])
-        self.assertEqual(sorted(self.graph.neighbors(4)), sorted([3, 2]))
+        self.assertEqual(self.graph.neighbors(4), [2, 3])
 
         # test listing neighbors for non-existent nodes
-        with self.assertRaises(ValueError):
-            self.graph.neighbors(99)
-
         with self.assertRaises(ValueError):
             self.emptyGraph.neighbors(99)
 
@@ -470,9 +495,6 @@ class TestGraph(unittest.TestCase):
         self.assertTrue(self.graph.is_adjacent(4, 3))
 
         # test checking adjacency with non-existent nodes
-        with self.assertRaises(ValueError):
-            self.graph.is_adjacent(0, 99)
-
         with self.assertRaises(ValueError):
             self.emptyGraph.is_adjacent(0, 99)
 
