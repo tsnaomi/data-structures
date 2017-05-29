@@ -27,7 +27,7 @@ Don't trust anything I say.
 
 ### Doubly-linked list
 
- This repo implements the [*doubly-linked list*](https://en.wikipedia.org/wiki/Doubly_linked_list) data structure. A doubly-linked list is a sequence of nodes, wherein each node *links to* the previous and following node. This implementation contains the following methods:
+ This repo implements the [*doubly-linked list*](https://en.wikipedia.org/wiki/Doubly_linked_list) data structure. A doubly-linked list is a sequence of nodes, wherein each node *links to* the previous and following node. This implementation includes the following methods:
   - `insert(val)` inserts *val* at the beginning of the list
   - `append(val)` appends *val* to the end of the list
   - `shift()` removes and returns the first value in the list
@@ -38,25 +38,27 @@ Don't trust anything I say.
  
  These methods perform accordingly, where *n* is the number of nodes in a list:
 
+ <!-- What is the space complexity analysis? O(n) or O(n^2)? -->
  ||insert|append|shift|pop|remove|size|contains|
  |---|---|---|---|---|---|---|---|
  |**Average**/**Worst**|O(1)|O(1)|O(1)|O(1)|O(*n*)|O(*n*)|O(*n*)|
+ 
+ ([back to top](#data-structures))
    
 ### Queue
 
-<!--
-space... O(N)
-enqueue... O(1)
-dequeue... O(1)
-peek... O(1)
-size... O(1)
+ A [*queue*](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) is a first-in-first-out or *FIFO* data structure, from which items are removed (*dequeued*) in the order that they were inserted (*enqueued*). This repo's implementation includes the following methods:
+  - `enqueue(val)` appends *val* to the end of the queue
+  - `dequeue()` removes and returns the first value in the queue
+  - `peek()` returns the first value in the queue without removing it from the queue
+  - `size()` returns the number of items in the queue
 
--->
-
-<!-- ||Insert|Delete|Search|
-|---|---|---|---|
-|**Average**/**Worst**|O(1)|O(1)|O(*n*)| -->
-  
+ <!-- What is the space complexity analysis? O(n) or O(n^2)? -->
+ ||enqueue|dequeue|peek|size|
+ |---|---|---|---|---|
+ |**Average**/**Worst**|O(1)|O(1)|O(1)|O(1)|
+ 
+ ([back to top](#data-structures))
   
 ### Stack
 
