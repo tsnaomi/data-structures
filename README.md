@@ -137,7 +137,7 @@ neighbors... O(1) ? (assumes dict lookup is O(1))
 
  The *best* case for insertion sort is an input that is already sorted. With a sorted list, the algorithm merely iterates across the list without shifting any items, thus taking **O(*n*)** time, where *n* is the number of items in the list.
 
- The *worst* case is an input sorted in descending order. This forces the algorithm to shift the current value to the front of the sorted sub-list at each iteration, taking **O(*n*<sup>2</sup>)** time. Therefore, 
+ The *worst* case is an input sorted in descending order. This forces the algorithm to shift the current value to the front of the sorted sub-list at each iteration, taking **O(*n*<sup>2</sup>)** time.
 
  The *average* case also takes **O(*n*<sup>2</sup>)** time, rendering it impractical for larger lists.
 
@@ -161,15 +161,13 @@ neighbors... O(1) ? (assumes dict lookup is O(1))
 
 ### Quicksort
 
- [*Quicksort*](https://en.wikipedia.org/wiki/Quicksort) is another divide-and-conquer sorting algorithm. It picks a value, called a *pivot*, then *partitions* the input list into two sub-lists: a list containing values less than (or equal) to the pivot and a list containing values greater than the pivot. It then recursively sorts each sub-list accordingly.
-
- This repo contains both the [*Lomuto*](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme) and [*Hoare*](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme) partitioning schemes.
+ [*Quicksort*](https://en.wikipedia.org/wiki/Quicksort) is another divide-and-conquer sorting algorithm. It picks a value, called a *pivot*, then *partitions* the input list into two sub-lists: a list containing values less than (or equal) to the pivot and a list containing values greater than the pivot. It then recursively sorts each sub-list accordingly. (This repo implements both the [*Lomuto*](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme) and [*Hoare*](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme) partitioning schemes.)
 
  The *best* case for quicksort is a balanced input, where each partitioning results in two approximately equally-sized sub-lists. With such an input, quicksort takes **O(*n* log *n*)** time.
 
  Likewise, the *average* case for quicksort also takes **O(*n* log *n*)** time.
 
- The *worst* case for quicksort is when the partitioning results in an empty sub-list and a sub-list of size *n* - 1, taking **O(*n*<sup>2</sup>)** to sort. This can happen if the pivot is equal to the lowest or greatest value in the input or, in the Lomuto scheme, when all of the items are equal in value. 
+ The *worst* case for quicksort is when the partitioning results in an empty sub-list and a sub-list of size *n* - 1, taking **O(*n*<sup>2</sup>)** time to sort. This can happen if the pivot is equal to the lowest or greatest value in the input or, in the Lomuto scheme, when all of the items are equal in value. 
 
  |Best|Average|Worst|
  |---|---|---|
