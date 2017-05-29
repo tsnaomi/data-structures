@@ -27,6 +27,22 @@ Don't trust anything I say.
 
 ### Doubly-linked list
 
+ This repo implements the [*doubly-linked list*](https://en.wikipedia.org/wiki/Doubly_linked_list) data structure. A doubly-linked list is a sequence of nodes, wherein each node *links to* the previous and following node. This implementation contains the following methods:
+  - `insert(val)` inserts *val* at the beginning of the list
+  - `append(val)` appends *val* to the end of the list
+  - `shift()` removes and returns the first value in the list
+  - `pop()` removes and returns the last value in the list 
+  - `remove(val)` removes the first instance of *val* in the list
+  - `size()` returns the number of the nodes in the list (i.e., the list's length)
+  - `contains(val)` returns True if the list contains *val*; otherwise, False
+ 
+ These methods perform accordingly, where *n* is the number of nodes in a list:
+
+ ||insert|append|shift|pop|remove|size|contains|
+ |---|---|---|---|---|---|---|---|
+ |**Average**/**Worst**||||||||
+ 
+
 <!--
 space... O(N)
 size... O(1)
