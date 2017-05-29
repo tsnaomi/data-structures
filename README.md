@@ -165,12 +165,30 @@ Don't trust anything I say.
 
  Once again:
  
- ![my feelings](http://tsnaomi.net/images/bst.png)
-
- <!-- ||Insert|Delete|Search|
- |---|---|---|---|
- |**Average**|O(log *n*)|O(log *n*)|O(log *n*)|
- |**Worst**|O(*n*)|O(*n*)|O(*n*)| -->
+ ![feelings](http://tsnaomi.net/images/bst.png)
+ 
+  Available methods:
+   - `insert(val)` inserts *val* into the tree
+   - `contains(val)` returns True if the tree contains *val*; otherwise, False
+   - `delete(val)` deletes *val* from the tree
+   - `size()` returns the number of nodes in the tree
+   - `depth()` returns the depth of the tree
+   - `get_balance()` returns an integer *i* indicating the tree's balance
+     - if ***i* == 0**, the tree is perfectly balanced
+     - if ***i* < 0**, the tree is left-heavy
+     - if ***i* > 0**, the tree is right-heavy
+   - `in_order()` traverses and returns the tree's nodes in order
+   - `pre_order()` traverses and returns the tree's nodes, yielding parents first
+   - `post_order()` traverses and returns the tree's nodes, yielding children first
+   - `breadth_first()` traverses and returns the tree's nodes in level order
+   
+ <!-- space complexity it O(n) -->  
+ <!--
+ ||insert|contains|delete|size|depth|get_balance|in/pre/post_order|breadth_first|
+ |---|---|---|---|---|---|---|---|---|
+ |**Average**|   |   |   |   |   |   |   |   |
+ |**Worst**|   |   |   |   |   |   |   |   |
+ -->
 
  ([back to top](#data-structures))
 
