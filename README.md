@@ -144,6 +144,8 @@ neighbors... O(1) ? (assumes dict lookup is O(1))
  |Best|Average|Worst|
  |---|---|---|
  |O(*n*)|O(*n*<sup>2</sup>)|O(*n*<sup>2</sup>)|
+ 
+ ([back to top](#data-structures))
 
 ### Merge sort
 
@@ -154,6 +156,8 @@ neighbors... O(1) ? (assumes dict lookup is O(1))
  |Best|Average|Worst|
  |---|---|---|
  |O(*n* log *n*)|O(*n* log *n*)|O(*n* log *n*)|
+ 
+ ([back to top](#data-structures))
 
 ### Quicksort
 
