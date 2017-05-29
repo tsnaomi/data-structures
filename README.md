@@ -86,6 +86,7 @@ Don't trust anything I say.
   - `peek()` returns the topmost value in the heap without removing it from the heap
   - `size()` returns the number of items in the heap
  
+ <!-- What is the space complexity analysis? -->
  ||push|pop|peek|size|
  |---|---|---|---|---|
  |**Average**|O(1)|O(log *n*)|O(1)|O(1)|
@@ -112,42 +113,54 @@ Don't trust anything I say.
  This repo's implementation of a hash table includes the following methods:  
   - `set(key, val)` stores the *key*-*value* pair in the hash table (assuming that *key* is not already in the table)
   - `get(key)` retrieves the value stored at *key*
-  
+ 
+ <!-- What is the space complexity analysis? -->
  ||set|get|
  |---|---|---|
  |**Average**|O(1)|O(1)
  |**Worst**|O(*n*)|O(*n*)|
 
-<!-- 
-space... O(n)
-set... worst O(n), where n is the number of bins
-get... worst O(n + m), # number of bins plus number of key-vales pairs
--->
-
-<!-- ||Insert|Delete|Search|
-|---|---|---|---|
-|**Average**|O(1)|O(1)|O(1)|
-|**Worst**|O(*n*)|O(*n*)|O(*n*)| -->
+ <!-- 
+ space... O(n)
+ set... worst O(n), where n is the number of bins
+ get... worst O(n + m), # number of bins plus number of key-vales pairs
+ ||Insert|Delete|Search|
+ |---|---|---|---|
+ |**Average**|O(1)|O(1)|O(1)|
+ |**Worst**|O(*n*)|O(*n*)|O(*n*)| 
+ --> 
+ 
+ ([back to top](#data-structures))
 
 ### Graph
+ 
+ *[Graph](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)) description coming soon!*
 
-<!--
-undirect graph implementation, adjacency list
+ This repo uses [adjacency lists](https://en.wikipedia.org/wiki/Adjacency_list) to represent undirected graphs. The following methods are available in this implementation:
+  - `add_node(val)` adds the node *val* to graph
+  - `add_edge(val1, val2)` adds an edge to the graph connecting nodes *val1* and *val2* (adding both nodes if need be)
+  - `del_node(val)` deletes the node *val* from the graph, along with all of its edges
+  - `del_edge(val1, val2)` deletes the edge connecting nodes *val1* and *val2* in the graph
+  - `has_node(val)` returns True if the node *val* is in the graph; otherwise, False
+  - `neighbors(val)` returns a list of the nodes with edges connecting to the node *val*
+  - `is_adjacent(val1, val2)` returns True if there is an edge connecting nodes *val1* and *val2*; otherwise, False
+  
+ These methods perform accordingly, where *n* is the number of nodes in a graph and *e* is the number of edges:
+ 
+ <!-- What is the space complexity analysis? Is this average or worst? -->
+ |add_node|add_edge|del_node|del_edge|has_node|neighbors|is_adjacent|
+ |---|---|---|---|---|---|---|
+ |O(1)|O(1)|O(*e*)|O(*n*)|O(*n*)|O(1)|O(*n*)|
+  
+ <!--
+ let N = # of nodes (V)
+     E = # of edges (E)
+ has node... O(N) ? (assumes dict lookup is O(1))
+ adjacent... O(N)  ? (assumes dict lookup is O(1))
+ neighbors... O(1) ? (assumes dict lookup is O(1))
+ -->
 
-let N = # of nodes (V)
-    E = # of edges (E)
-
-space...
-add node... O(1)
-add edge... O(1)
-
-del node... O(2E) == O(E)
-del edge... O(N)
-
-has node... O(N)
-adjacent... O(E)  ? (assumes dict lookup is O(1))
-neighbors... O(1) ? (assumes dict lookup is O(1))
--->
+ ([back to top](#data-structures))
 
 ### Binary search tree
 
@@ -188,7 +201,7 @@ neighbors... O(1) ? (assumes dict lookup is O(1))
 
 ### Quicksort
 
- [*Quicksort*](https://en.wikipedia.org/wiki/Quicksort) is another divide-and-conquer sorting algorithm. It picks a value, called a *pivot*, then *partitions* the input list into two sub-lists: a list containing values less than (or equal) to the pivot and a list containing values greater than the pivot. It then recursively sorts each sub-list accordingly. This repo implements both the [*Lomuto*](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme) and [*Hoare*](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme) partitioning schemes.
+ [*Quicksort*](https://en.wikipedia.org/wiki/Quicksort) is another divide-and-conquer sorting algorithm. It picks a value, called a *pivot*, then *partitions* the input list into two sub-lists: a list containing values less than (or equal) to the pivot and a list containing values greater than the pivot. It then recursively sorts each sub-list accordingly. This repo implements both the [Lomuto](https://en.wikipedia.org/wiki/Quicksort#Lomuto_partition_scheme) and [Hoare](https://en.wikipedia.org/wiki/Quicksort#Hoare_partition_scheme) partitioning schemes.
 
  The *best* case for quicksort is a balanced input, where each partitioning results in two approximately equally-sized sub-lists. With such an input, quicksort takes **O(*n* log *n*)** time.
 
