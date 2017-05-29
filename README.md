@@ -129,19 +129,17 @@ neighbors... O(1) ? (assumes dict lookup is O(1))
 
 ### Insertion sort
 
-*Insertion sort* constructs a sorted list one item at a time by iterating up the provided list and accruing a sorted sub-list behind it. At each position in the list, it compares the current value and the largest value in the sorted sub-list. If the current value is larger, the algorithm moves to the next position. Otherwise, it moves the current value to its correct position in the sub-list and shifts all rightward values in the sub-list up by one position.
+[*Insertion sort*](https://en.wikipedia.org/wiki/Insertion_sort) constructs a sorted list one item at a time by iterating up the provided list and accruing a sorted sub-list behind it. At each position in the list, it compares the current value with the previous value. If the current value is greater, the algorithm moves on to the next iteration. Otherwise, it moves the current value to its correct position in the sub-list and shifts all rightward values in the sub-list up by one position.
 
 The *best* case for insertion sort is an input that is already sorted, which takes **(O(*n*))** time, where *n* is the number of items in the list.
 
-The *worst* case is an array sorted in reverse order. This forces the algorithm to shift the current value to the front of the sorted sub-list at each iteration, taking **O(*n*<sup>2</sup>)** time.
+The *worst* case is an input sorted in reverse order. This forces the algorithm to shift the current value to the front of the sorted sub-list at each iteration, taking **O(*n*<sup>2</sup>)** time.
 
 The *average* case also takes **O(*n*<sup>2</sup>)** time, rendering it impractical for larger lists.
 
 |Best|Worst|Average|
 |---|---|---|
 |O(*n*)|O(*n*<sup>2</sup>)|O(*n*<sup>2</sup>)|
-
-Cf. [Wikipedia](https://en.wikipedia.org/wiki/Insertion_sort).
 
 ### Merge sort
 
