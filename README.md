@@ -75,19 +75,21 @@ Don't trust anything I say.
  
  ([back to top](#data-structures))
 
-<!--
-space... O(N)
-push... O(1)
-pop... O(1)
-peek... O(1)
-size... O(1)
--->
-
-<!-- ||Insert|Delete|Search|
-|---|---|---|---|
-|**Average**/**Worst**|O(1)|O(1)|O(*n*)| -->
-
 ### Binary heap
+
+ <!-- A [*binary heap*](https://en.wikipedia.org/wiki/Binary_heap)... -->
+ *[Binary heap](https://en.wikipedia.org/wiki/Binary_heap) description coming soon!*
+ 
+ This repo's implementation of a binary heap includes the following methods:  
+  - `push(val)` adds *val* to the heap, filling in the heap at the lowest level from left to right
+  - `pop()` removes and returns the topmost value in the heap
+  - `peek()` returns the topmost value in the heap without removing it from the heap
+  - `size()` returns the number of items in the heap
+ 
+ ||push|pop|peek|size|
+ |---|---|---|---|---|
+ |**Average**|O(1)|O(log *n*)|O(1)|O(1)|
+ |**Worst**|O(log *n*)|O(log *n*)|O(1)|O(1)|
 
 <!-- - binary tree (if there are the right number of nodes, odd number)
 - complete, except possibly the last level, balanced as possible; every non-terminal node has two children 
@@ -99,8 +101,9 @@ size... O(1)
 - find max... O(1)
 - insertion... add to the bottom, swap with parent depending on the heap property, worst O(log n), average O(1)
 - root deletion... worst O(log n), average O(1) 
-- peek o(1) -->
+-->
 
+([back to top](#data-structures))
 
 ### Hash table
 
