@@ -76,8 +76,8 @@ class LinkedList:
 
         self.length += 1
 
-    def pop(self):
-        '''Pop off and return the value at the head of the list.'''
+    def shift(self):
+        '''Remove and return the value at the head of the list.'''
         try:
             val = self.List.val
             self.List = self.List.post
@@ -86,10 +86,10 @@ class LinkedList:
             return val
 
         except AttributeError:
-            raise IndexError('Empty lists can\'t pop. Welp.')
+            raise IndexError('Empty lists can\'t shift. Welp.')
 
-    def shift(self):
-        '''Remove and return the value at the tail of the list.'''
+    def pop(self):
+        '''Pop off and return the value at the tail of the list.'''
         node = self.List
 
         while node:
@@ -107,7 +107,7 @@ class LinkedList:
 
                 return node.val
 
-        raise IndexError('Empty lists can\'t shift. Darn.')
+        raise IndexError('Empty lists can\'t pop. Darn.')
 
     def remove(self, val):
         '''Remove the first instance of 'val' found in the list.'''

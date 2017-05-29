@@ -100,29 +100,29 @@ class TestLinkedList(unittest.TestCase):  # doubly-linked list
         self.List.append(True)
         self.assertEqual(tuple(self.List), (1, 2, 3, 4, True))
 
-    def test_pop(self):
-        '''Test popping off and returning the head of the list.'''
-        self.assertEqual(self.List.pop(), 1)
-        self.assertEqual(tuple(self.List), (2, 3, 4))
-        self.assertEqual(self.List.pop(), 2)
-        self.assertEqual(self.List.pop(), 3)
-        self.assertEqual(self.List.pop(), 4)
-        self.assertEqual(tuple(self.List), ())
-
-        with self.assertRaises(IndexError):
-            self.emptyList.pop()
-
     def test_shift(self):
-        '''Test removing and returning the tail of the list.'''
-        self.assertEqual(self.List.shift(), 4)
-        self.assertEqual(tuple(self.List), (1, 2, 3))
-        self.assertEqual(self.List.shift(), 3)
-        self.assertEqual(self.List.shift(), 2)
+        '''Test removing and returning the head of the list.'''
         self.assertEqual(self.List.shift(), 1)
+        self.assertEqual(tuple(self.List), (2, 3, 4))
+        self.assertEqual(self.List.shift(), 2)
+        self.assertEqual(self.List.shift(), 3)
+        self.assertEqual(self.List.shift(), 4)
         self.assertEqual(tuple(self.List), ())
 
         with self.assertRaises(IndexError):
             self.emptyList.shift()
+
+    def test_pop(self):
+        '''Test popping off and returning the tail of the list.'''
+        self.assertEqual(self.List.pop(), 4)
+        self.assertEqual(tuple(self.List), (1, 2, 3))
+        self.assertEqual(self.List.pop(), 3)
+        self.assertEqual(self.List.pop(), 2)
+        self.assertEqual(self.List.pop(), 1)
+        self.assertEqual(tuple(self.List), ())
+
+        with self.assertRaises(IndexError):
+            self.emptyList.pop()
 
     def test_remove(self):
         '''Testing finding and removing values from the list.'''
