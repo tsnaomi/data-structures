@@ -6,6 +6,7 @@ class Queue:
 
     def __init__(self):
         self.Queue = None
+        self.end = None
         self.length = 0
 
     def __repr__(self):
@@ -25,19 +26,17 @@ class Queue:
             node = node.post
 
     def enqueue(self, val):
-        '''Add 'val' to the front of the queue.'''
-        node = self.Queue
-
-        while node:
-            if node.post:
-                node = node.post
-
-            else:
-                node.post = Node(val)
-                break
+        '''Add 'val' to the queue.'''
+        if self.Queue:
+            node = Node(val)
+            node.prev = self.end
+            self.end = node
+            self.end.prev.post = self.end
 
         else:
-            self.Queue = Node(val)
+            node = Node(val)
+            self.Queue = node
+            self.end = node
 
         self.length += 1
 
@@ -45,8 +44,14 @@ class Queue:
         '''Remove and return the first item in the queue.'''
         try:
             val = self.Queue.val
-            self.Queue = self.Queue.post
             self.length -= 1
+
+            try:
+                self.Queue = self.Queue.post
+                self.Queue.prev = None
+
+            except AttributeError:
+                pass
 
             return val
 
