@@ -91,27 +91,37 @@ Don't trust anything I say.
  |**Average**|O(1)|O(log *n*)|O(1)|O(1)|
  |**Worst**|O(log *n*)|O(log *n*)|O(1)|O(1)|
 
-<!-- - binary tree (if there are the right number of nodes, odd number)
-- complete, except possibly the last level, balanced as possible; every non-terminal node has two children 
-- filling in left to right, from the lowest level, so every heap with n nodes has the same shape
-- any node is at least as large as its children
-- heap property: a node is either >= (max) or <= (min) its children
-- space... O(n)
-- the height of the heap for n nodes i O(log n)
-- find max... O(1)
-- insertion... add to the bottom, swap with parent depending on the heap property, worst O(log n), average O(1)
-- root deletion... worst O(log n), average O(1) 
--->
+ <!-- - binary tree (if there are the right number of nodes, odd number)
+ - complete, except possibly the last level, balanced as possible; every non-terminal node has two children 
+ - filling in left to right, from the lowest level, so every heap with n nodes has the same shape
+ - any node is at least as large as its children
+ - heap property: a node is either >= (max) or <= (min) its children
+ - space... O(n)
+ - the height of the heap for n nodes i O(log n)
+ - find max... O(1)
+ - insertion... add to the bottom, swap with parent depending on the heap property, worst O(log n), average O(1)
+ - root deletion... worst O(log n), average O(1) 
+ -->
 
-([back to top](#data-structures))
+ ([back to top](#data-structures))
 
 ### Hash table
+
+ *[Hash table](https://en.wikipedia.org/wiki/Hash_table) description coming soon!*
+ 
+ This repo's implementation of a hash table includes the following methods:  
+  - `set(key, val)` stores the *key*-*value* pair in the hash table (assuming that *key* is not already in the table)
+  - `get(key)` retrieves the value stored at *key*
+  
+ ||set|get|
+ |---|---|---|
+ |**Average**|O(1)|O(1)
+ |**Worst**|O(*n*)|O(*n*)|
 
 <!-- 
 space... O(n)
 set... worst O(n), where n is the number of bins
 get... worst O(n + m), # number of bins plus number of key-vales pairs
-
 -->
 
 <!-- ||Insert|Delete|Search|
