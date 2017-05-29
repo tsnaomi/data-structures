@@ -129,24 +129,28 @@ neighbors... O(1) ? (assumes dict lookup is O(1))
 
 ### Insertion sort
 
-[*Insertion sort*](https://en.wikipedia.org/wiki/Insertion_sort) constructs a sorted list one item at a time by iterating up the provided list and accruing a sorted sub-list behind it. At each position in the list, it compares the current value with the previous value. If the current value is greater, the algorithm moves on to the next iteration. Otherwise, it moves the current value to its correct position in the sub-list and shifts all rightward values in the sub-list up by one position.
+ [*Insertion sort*](https://en.wikipedia.org/wiki/Insertion_sort) constructs a sorted list one item at a time by iterating up the provided list and accruing a sorted sub-list behind it. At each position in the list, it compares the current value with the previous value. If the current value is greater, the algorithm moves on to the next iteration. Otherwise, it moves the current value to its correct position in the sub-list and shifts all rightward values in the sub-list up by one position.
 
-The *best* case for insertion sort is an input that is already sorted, which takes **(O(*n*))** time, where *n* is the number of items in the list.
+ The *best* case for insertion sort is an input that is already sorted. With a sorted list, the algorithm merely iterates across the list without shifting any items, thus taking **(O(*n*))** time, where *n* is the number of items in the list.
 
-The *worst* case is an input sorted in reverse order. This forces the algorithm to shift the current value to the front of the sorted sub-list at each iteration, taking **O(*n*<sup>2</sup>)** time.
+ The *worst* case is an input sorted in descending order. This forces the algorithm to shift the current value to the front of the sorted sub-list at each iteration, taking **O(*n*<sup>2</sup>)** time. Therefore, 
 
-The *average* case also takes **O(*n*<sup>2</sup>)** time, rendering it impractical for larger lists.
+ The *average* case also takes **O(*n*<sup>2</sup>)** time, rendering it impractical for larger lists.
 
-|Best|Worst|Average|
-|---|---|---|
-|O(*n*)|O(*n*<sup>2</sup>)|O(*n*<sup>2</sup>)|
+ |Best|Worst|Average|
+ |---|---|---|
+ |O(*n*)|O(*n*<sup>2</sup>)|O(*n*<sup>2</sup>)|
 
 ### Merge sort
 
-<!-- |Best|Average|Worst|
-|---|---|---|
-|O(*n* log *n*)|O(*n* log *n*)|O(*n* log *n*)|
- -->
+ [*Merge sort*](https://en.wikipedia.org/wiki/Merge_sort) is a divide-and-conquer algorithm. The implementation in this repo takes a *top-down* approach. It recursively divides the input list into halves, sorts each halve, then merges the sorted halves back together.
+
+ Merge sort always takes **(O(*n* log *n*))** time, since the order of the input does not impact how often the algorithm invokes itself. See [here](https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/analysis-of-merge-sort) for a more in-depth analysis of merge sort's performance.
+
+ |Best|Worse|Average|
+ |---|---|---|
+ |O(*n* log *n*)|O(*n* log *n*)|O(*n* log *n*)|
+
 
 ### Quicksort
 
