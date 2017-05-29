@@ -177,6 +177,6 @@ neighbors... O(1) ? (assumes dict lookup is O(1))
 
 ### Radix sort
 
- *Coming (not so) soon!*
+ *Coming (not so) soon!* Until then, check out this brief [YouTube video](https://www.youtube.com/watch?v=nu4gDuFabIM) on radix sort.
 
  ([back to top](#data-structures))
