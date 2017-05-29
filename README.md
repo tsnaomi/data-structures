@@ -143,7 +143,7 @@ neighbors... O(1) ? (assumes dict lookup is O(1))
 
 ### Merge sort
 
- [*Merge sort*](https://en.wikipedia.org/wiki/Merge_sort) is a divide-and-conquer algorithm. The implementation in this repo takes a *top-down* approach. It recursively divides the input list into halves, sorts each halve, then merges the sorted halves back together.
+ [*Merge sort*](https://en.wikipedia.org/wiki/Merge_sort) is a divide-and-conquer sorting algorithm. The implementation in this repo takes a *top-down* approach that recursively divides the input list into halves, sorts each halve, then merges the sorted halves back together.
 
  Merge sort always takes **(O(*n* log *n*))** time, since the order of the input does not impact how often the algorithm invokes itself. See [here](https://www.khanacademy.org/computing/computer-science/algorithms/merge-sort/a/analysis-of-merge-sort) for a more in-depth analysis of merge sort's performance.
 
