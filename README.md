@@ -41,7 +41,7 @@ Don't trust anything I say.
  <!-- What is the space complexity analysis? O(n) or O(n^2)? -->
  ||insert|append|shift|pop|remove|size|contains|
  |---|---|---|---|---|---|---|---|
- |**Average**/**Worst**|O(1)|O(1)|O(1)|O(1)|O(*n*)|O(*n*)|O(*n*)|
+ |**Average**/**Worst**|O(1)|O(1)|O(1)|O(1)|O(*n*)|O(1)|O(*n*)|
  
  ([back to top](#data-structures))
    
@@ -110,7 +110,7 @@ Don't trust anything I say.
  *[Hash table](https://en.wikipedia.org/wiki/Hash_table) description coming soon!*
  
  This repo's implementation of a hash table includes the following methods:  
-  - `set(key, val)` stores the *key*-*value* pair in the hash table (assuming that *key* is not already in the table)
+  - `set(key, val)` stores the *key*-*val* pair in the hash table (assuming that *key* is not already in the table)
   - `get(key)` retrieves the value stored at *key*
  
  <!-- What is the space complexity analysis? -->
@@ -136,7 +136,7 @@ Don't trust anything I say.
  *[Graph](https://en.wikipedia.org/wiki/Graph_(abstract_data_type)) description coming soon!*
 
  This repo uses [adjacency lists](https://en.wikipedia.org/wiki/Adjacency_list) to represent undirected graphs. The following methods are available in this implementation:
-  - `add_node(val)` adds the node *val* to graph
+  - `add_node(val)` adds the node *val* to the graph
   - `add_edge(val1, val2)` adds an edge to the graph connecting nodes *val1* and *val2* (adding both nodes if need be)
   - `del_node(val)` deletes the node *val* from the graph, along with all of its edges
   - `del_edge(val1, val2)` deletes the edge connecting nodes *val1* and *val2* in the graph
